@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NextbaseAI — Platform Overview</title>
+<title>NextbaseAI Platform Overview</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -128,7 +128,7 @@
   <div class="label">Platform Overview</div>
   <h1>NextbaseAI</h1>
   <p class="subtitle">
-    An AI assistant that connects to our Siemens PLCs, understands our electrical schematics, and supports our maintenance and operations teams — through WhatsApp and a dedicated mobile app.
+    An AI assistant that connects to our Siemens PLCs, understands our electrical schematics, and supports our maintenance and operations teams via WhatsApp and a dedicated mobile app.
   </p>
   <div class="card-grid">
     <div class="card">
@@ -136,14 +136,14 @@
         <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
       </div>
       <h3>Automatic Fault Alerts</h3>
-      <p>Technicians are notified immediately when a machine faults — with context and suggested actions.</p>
+      <p>Technicians are notified immediately when a machine faults - with context and suggested actions.</p>
     </div>
     <div class="card">
       <div class="icon icon--green">
         <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
       </div>
       <h3>Live PLC Data</h3>
-      <p>Real-time readings from our Siemens PLCs. Temperatures, pressures, speeds, fault codes — on demand.</p>
+      <p>Real-time readings from our Siemens PLCs. Temperatures, pressures, speeds, fault codes. All on demand.</p>
     </div>
     <div class="card">
       <div class="icon icon--purple">
@@ -171,7 +171,7 @@
         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
       </div>
       <h3>Management Reports</h3>
-      <p>Shift handovers, equipment health summaries, and downtime analysis — generated automatically.</p>
+      <p>Shift handovers, equipment health summaries, and downtime analysis. All generated automatically.</p>
     </div>
   </div>
 </div>
@@ -180,7 +180,7 @@
 <div id="faults" class="container">
   <div class="label">Automatic Fault Notifications</div>
   <h2>Technicians know before they're called</h2>
-  <p class="subtitle">The system continuously monitors our PLCs. When a fault occurs, the right people are notified instantly — with context, not just an alarm code.</p>
+  <p class="subtitle">The system continuously monitors our PLCs. When a fault occurs, the right people are notified with full context and suggested next steps.</p>
 
   <div class="diagram">
     <div class="diagram-label">Alert Pipeline</div>
@@ -192,11 +192,11 @@
     <div class="mermaid-inner">
       <pre class="mermaid">
 flowchart LR
-    A["Continuous\nPLC Monitoring"] --> B{"Fault or\nthreshold?"}
-    B -->|"Normal"| C["Continue monitoring\nno cost"]
-    B -->|"Triggered"| D["AI reads PLC +\nschematics"]
-    D --> E["Builds diagnosis\nwith context"]
-    E --> F["Sends alert to\ntechnician via WhatsApp"]
+    A["Continuous<br/>PLC Monitoring"] --> B{"Fault or\nthreshold?"}
+    B -->|"Normal"| C["Continue monitoring<br/>no cost"]
+    B -->|"Triggered"| D["AI reads PLC +<br/>schematics"]
+    D --> E["Builds diagnosis<br/>with context"]
+    E --> F["Sends alert to<br/>technician via WhatsApp"]
     C --> A
       </pre>
     </div>
@@ -259,7 +259,7 @@ sequenceDiagram
     SCH-->>AI: Thermal relay F5, trips at 85°C
 
     AI-->>WA: Diagnosis + annotated schematic
-    WA-->>Tech: "87.3°C — relay F5 should have tripped. Check F5 contacts and reset."
+    WA-->>Tech: "87.3°C - relay F5 should have tripped. Check F5 contacts and reset."
       </pre>
     </div>
   </div>
@@ -270,14 +270,14 @@ sequenceDiagram
         <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
       </div>
       <h3>Text or Voice</h3>
-      <p>Works with typed messages or voice notes — useful on the factory floor with gloves on.</p>
+      <p>Works with typed messages or voice notes. Designed for the factory floor.</p>
     </div>
     <div class="card">
       <div class="icon icon--purple">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       </div>
       <h3>Root Cause Analysis</h3>
-      <p>Doesn't just describe the symptom — traces the electrical and logical path to the source.</p>
+      <p>Goes beyond symptoms. Traces the electrical and logical path to the source.</p>
     </div>
     <div class="card">
       <div class="icon icon--green">
@@ -293,7 +293,7 @@ sequenceDiagram
 <div id="plc-data" class="container">
   <div class="label">Real-Time PLC Data</div>
   <h2>Ask the machine directly</h2>
-  <p class="subtitle">Any team member can request live values from our PLCs — temperatures, pressures, motor states, fault codes — through a simple chat message.</p>
+  <p class="subtitle">Any team member can request live values from our PLCs - temperatures, pressures, motor states, fault codes. All through a simple chat message.</p>
 
   <div class="diagram">
     <div class="diagram-label">Data Retrieval</div>
@@ -305,9 +305,9 @@ sequenceDiagram
     <div class="mermaid-inner">
       <pre class="mermaid">
 flowchart LR
-    A["User asks:\n'What's the temperature\non Line 2?'"] --> B["AI identifies\nrelevant PLC tags"]
-    B --> C["Reads live values\nfrom Siemens PLC"]
-    C --> D["Returns formatted\nresponse with context"]
+    A["User asks:<br/>'What's the temperature<br/>on Line 2?'"] --> B["AI identifies<br/>relevant PLC tags"]
+    B --> C["Reads live values<br/>from Siemens PLC"]
+    C --> D["Returns formatted<br/>response with context"]
       </pre>
     </div>
   </div>
@@ -318,7 +318,7 @@ flowchart LR
         <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
       </div>
       <h3>Real-Time Values</h3>
-      <p>Live readings from our Siemens PLCs. No delay, no need to walk to the HMI panel.</p>
+      <p>Live readings from our Siemens PLCs. Accessible from anywhere in the plant.</p>
     </div>
     <div class="card">
       <div class="icon icon--orange">
@@ -332,7 +332,7 @@ flowchart LR
         <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
       </div>
       <h3>Contextual Response</h3>
-      <p>Values come with unit, limits, and status — not just a raw number.</p>
+      <p>Values include unit, limits, and current status for quick assessment.</p>
     </div>
   </div>
 </div>
@@ -341,7 +341,7 @@ flowchart LR
 <div id="schematics" class="container">
   <div class="label">Electrical Schematics</div>
   <h2>Consult schematics in plain language</h2>
-  <p class="subtitle">Our electrical schematics are converted to a structured format (ESCL) that the AI can query like a database — finding components, tracing circuits, and analyzing failures.</p>
+  <p class="subtitle">Our electrical schematics are converted to a structured format (ESCL) that the AI can query like a database. Find components, trace circuits, analyze failures.</p>
 
   <div class="diagram">
     <div class="diagram-label">Schematic Intelligence Pipeline</div>
@@ -353,13 +353,13 @@ flowchart LR
     <div class="mermaid-inner">
       <pre class="mermaid">
 flowchart LR
-    A["Electrical\nSchematic PDF"] --> B["ESCL\nConversion"]
-    B --> C["Queryable\nSchematic"]
-    C --> D["Find\nComponents"]
-    C --> E["Trace Power\nPaths"]
-    C --> F["Failure Impact\nAnalysis"]
-    C --> G["Guided\nDiagnosis"]
-    D & E & F & G --> H["Answer +\nAnnotated Image"]
+    A["Electrical<br/>Schematic PDF"] --> B["ESCL<br/>Conversion"]
+    B --> C["Queryable<br/>Schematic"]
+    C --> D["Find<br/>Components"]
+    C --> E["Trace Power<br/>Paths"]
+    C --> F["Failure Impact<br/>Analysis"]
+    C --> G["Guided<br/>Diagnosis"]
+    D & E & F & G --> H["Answer +<br/>Annotated Image"]
       </pre>
     </div>
   </div>
@@ -370,7 +370,7 @@ flowchart LR
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       </div>
       <h3>Natural Language Queries</h3>
-      <p>"What protects motor M3?" — no need to search through hundreds of PDF pages manually.</p>
+      <p>"What protects motor M3?" Plain questions, instant answers from the full schematic.</p>
     </div>
     <div class="card">
       <div class="icon icon--blue">
@@ -384,7 +384,7 @@ flowchart LR
         <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
       </div>
       <h3>Impact Analysis</h3>
-      <p>"What happens if contactor K12 fails?" — the AI maps every downstream effect.</p>
+      <p>"What happens if contactor K12 fails?" The AI maps every downstream effect.</p>
     </div>
   </div>
 </div>
@@ -393,7 +393,7 @@ flowchart LR
 <div id="recipes" class="container">
   <div class="label">Recipe Management</div>
   <h2>Adjust recipes through conversation</h2>
-  <p class="subtitle">Operators request parameter changes via chat. The AI validates the values, checks constraints, and applies the adjustments to the PLC — with confirmation and audit trail.</p>
+  <p class="subtitle">Operators request parameter changes via chat. The AI validates the values, checks constraints, and applies the adjustments to the PLC. Every change requires confirmation and is fully logged.</p>
 
   <div class="diagram">
     <div class="diagram-label">Recipe Adjustment Flow</div>
@@ -440,7 +440,7 @@ sequenceDiagram
         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
       </div>
       <h3>Full Audit Trail</h3>
-      <p>Every change is logged — who requested it, when, what the previous value was.</p>
+      <p>Every change is logged with the requester, timestamp, and previous value.</p>
     </div>
   </div>
 </div>
@@ -449,7 +449,7 @@ sequenceDiagram
 <div id="reports" class="container">
   <div class="label">Automated Reports</div>
   <h2>Reports for plant managers</h2>
-  <p class="subtitle">Shift handover reports, equipment health summaries, and downtime analysis — generated automatically and delivered to the right people.</p>
+  <p class="subtitle">Shift handover reports, equipment health summaries, and downtime analysis. Generated automatically and delivered to the right people.</p>
 
   <div class="diagram">
     <div class="diagram-label">Reporting Pipeline</div>
@@ -461,11 +461,11 @@ sequenceDiagram
     <div class="mermaid-inner">
       <pre class="mermaid">
 flowchart LR
-    A["PLC Data\n+ Alert History"] --> B["AI Compiles\nReport"]
+    A["PLC Data<br/>+ Alert History"] --> B["AI Compiles<br/>Report"]
     B --> C["Shift Handover"]
-    B --> D["Equipment Health\nSummary"]
-    B --> E["Downtime\nAnalysis"]
-    C & D & E --> F["Delivered via\nWhatsApp or Email"]
+    B --> D["Equipment Health<br/>Summary"]
+    B --> E["Downtime<br/>Analysis"]
+    C & D & E --> F["Delivered via<br/>WhatsApp or Email"]
       </pre>
     </div>
   </div>
@@ -512,20 +512,20 @@ flowchart LR
       <pre class="mermaid">
 flowchart TB
     subgraph FACTORY["OUR FACTORY"]
-        PLC["Siemens PLC\n(compatible with all machines)"]
-        GW["NextbaseAI Gateway\nOn-premise · Read-only"]
+        PLC["Siemens PLC<br/>(compatible with all machines)"]
+        GW["NextbaseAI Gateway<br/>On-premise · Read-only"]
     end
 
     subgraph CLOUD["NEXTBASEAI CLOUD"]
         AI["AI Agent"]
         MON["Smart Monitoring"]
-        KB["Knowledge Base\nManuals · Schematics · History"]
+        KB["Knowledge Base<br/>Manuals · Schematics · History"]
     end
 
     subgraph USERS["OUR TEAM"]
-        TECH["Technicians\nWhatsApp"]
-        ENG["Engineers\nMobile App"]
-        MGR["Managers\nAutomated Reports"]
+        TECH["Technicians<br/>WhatsApp"]
+        ENG["Engineers<br/>Mobile App"]
+        MGR["Managers<br/>Automated Reports"]
     end
 
     PLC --> GW
@@ -600,7 +600,7 @@ flowchart TB
 
 <!-- FOOTER -->
 <div class="container" style="text-align:center; padding:32px;">
-  <p style="color:var(--text-muted); font-size:13px;">NextbaseAI — Romulo Lange de Almeida · 2026</p>
+  <p style="color:var(--text-muted); font-size:13px;">NextbaseAI - Romulo Lange de Almeida · 2026</p>
 </div>
 
 <script>
