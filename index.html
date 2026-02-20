@@ -6,14 +6,11 @@
 <title>NextbaseAI — Industrial AI Platform</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <script defer src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
 <style>
-  /* ============ THEME — Industrial Dark-first ============ */
   :root {
     --font-body: 'Space Grotesk', system-ui, sans-serif;
-    --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
-
     --bg: #0c0f14;
     --surface: #141820;
     --surface2: #1a1f2a;
@@ -22,460 +19,156 @@
     --border-bright: rgba(255,255,255,0.12);
     --text: #e8ecf2;
     --text-dim: #7a8599;
-
     --cyan: #22d3ee;
     --cyan-dim: rgba(34,211,238,0.10);
     --green: #34d399;
     --green-dim: rgba(52,211,153,0.10);
     --orange: #fb923c;
     --orange-dim: rgba(251,146,60,0.10);
-    --red: #f87171;
-    --red-dim: rgba(248,113,113,0.10);
     --purple: #a78bfa;
     --purple-dim: rgba(167,139,250,0.10);
     --yellow: #fbbf24;
-    --yellow-dim: rgba(251,191,36,0.10);
     --blue: #60a5fa;
-    --blue-dim: rgba(96,165,250,0.10);
   }
-
   @media (prefers-color-scheme: light) {
     :root {
-      --bg: #f5f7fa;
-      --surface: #ffffff;
-      --surface2: #f0f2f5;
-      --surface-elevated: #ffffff;
-      --border: rgba(0,0,0,0.07);
-      --border-bright: rgba(0,0,0,0.14);
-      --text: #1a1f2e;
-      --text-dim: #6b7280;
-      --cyan: #0891b2;
-      --cyan-dim: rgba(8,145,178,0.08);
-      --green: #059669;
-      --green-dim: rgba(5,150,105,0.08);
-      --orange: #d97706;
-      --orange-dim: rgba(217,119,6,0.08);
-      --red: #dc2626;
-      --red-dim: rgba(220,38,38,0.08);
-      --purple: #7c3aed;
-      --purple-dim: rgba(124,58,237,0.08);
-      --yellow: #ca8a04;
-      --yellow-dim: rgba(202,138,4,0.08);
-      --blue: #2563eb;
-      --blue-dim: rgba(37,99,235,0.08);
+      --bg: #f5f7fa; --surface: #ffffff; --surface2: #f0f2f5;
+      --surface-elevated: #ffffff; --border: rgba(0,0,0,0.07);
+      --border-bright: rgba(0,0,0,0.14); --text: #1a1f2e; --text-dim: #6b7280;
+      --cyan: #0891b2; --cyan-dim: rgba(8,145,178,0.08);
+      --green: #059669; --green-dim: rgba(5,150,105,0.08);
+      --orange: #d97706; --orange-dim: rgba(217,119,6,0.08);
+      --purple: #7c3aed; --purple-dim: rgba(124,58,237,0.08);
     }
   }
-
-  /* ============ RESET ============ */
   * { margin:0; padding:0; box-sizing:border-box; }
-
   body {
     background: var(--bg);
     background-image:
       radial-gradient(ellipse at 15% 0%, var(--cyan-dim) 0%, transparent 50%),
-      radial-gradient(ellipse at 85% 100%, var(--green-dim) 0%, transparent 40%),
-      radial-gradient(ellipse at 50% 50%, var(--purple-dim) 0%, transparent 60%);
-    color: var(--text);
-    font-family: var(--font-body);
-    min-height: 100vh;
-    line-height: 1.6;
+      radial-gradient(ellipse at 85% 100%, var(--green-dim) 0%, transparent 40%);
+    color: var(--text); font-family: var(--font-body);
+    min-height: 100vh; line-height: 1.6;
   }
-
-  /* ============ NAV ============ */
   nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    position: sticky; top: 0; z-index: 100;
     background: color-mix(in srgb, var(--bg) 85%, transparent);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
-    padding: 12px 40px;
-    display: flex;
-    gap: 24px;
-    overflow-x: auto;
-    scrollbar-width: none;
+    padding: 12px 40px; display: flex; gap: 24px;
+    overflow-x: auto; scrollbar-width: none;
   }
   nav::-webkit-scrollbar { display:none; }
-  nav a {
-    color: var(--text-dim);
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 500;
-    white-space: nowrap;
-    transition: color 0.2s;
-    font-family: var(--font-mono);
-  }
+  nav a { color: var(--text-dim); text-decoration: none; font-size: 13px; font-weight: 500; white-space: nowrap; transition: color 0.2s; }
   nav a:hover { color: var(--cyan); }
-
-  /* ============ SECTIONS ============ */
-  .slide {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 60px 40px;
-  }
-
-  .slide + .slide {
-    border-top: 1px solid var(--border);
-  }
-
-  /* ============ ANIMATION ============ */
+  .slide { max-width: 1100px; margin: 0 auto; padding: 60px 40px; }
+  .slide + .slide { border-top: 1px solid var(--border); }
   @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
-  @keyframes fadeScale { from { opacity:0; transform:scale(0.92); } to { opacity:1; transform:scale(1); } }
-  @keyframes countUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
   @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.5; } }
-
   .anim { animation: fadeUp 0.5s ease-out both; animation-delay: calc(var(--i,0) * 0.07s); }
-  .anim-scale { animation: fadeScale 0.5s ease-out both; animation-delay: calc(var(--i,0) * 0.07s); }
 
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation-duration:0.01ms!important; animation-delay:0ms!important; transition-duration:0.01ms!important; }
-  }
-
-  /* ============ HERO ============ */
+  /* HERO */
   .hero { text-align:center; padding:100px 40px 80px; }
   .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--cyan-dim);
-    border: 1px solid color-mix(in srgb, var(--cyan) 30%, transparent);
-    border-radius: 20px;
-    padding: 6px 16px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--cyan);
-    margin-bottom: 24px;
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--cyan-dim); border: 1px solid color-mix(in srgb, var(--cyan) 30%, transparent);
+    border-radius: 20px; padding: 6px 16px; font-size: 12px; font-weight: 500; color: var(--cyan); margin-bottom: 24px;
   }
   .hero-badge .pulse { width:8px; height:8px; border-radius:50%; background:var(--cyan); animation:pulse 2s infinite; }
-  .hero h1 {
-    font-size: clamp(36px, 5vw, 64px);
-    font-weight: 700;
-    letter-spacing: -2px;
-    line-height: 1.1;
-    margin-bottom: 16px;
-    text-wrap: balance;
-  }
+  .hero h1 { font-size: clamp(36px, 5vw, 60px); font-weight: 700; letter-spacing: -2px; line-height: 1.1; margin-bottom: 16px; }
   .hero h1 span { color: var(--cyan); }
-  .hero .tagline {
-    font-size: 20px;
-    color: var(--text-dim);
-    max-width: 600px;
-    margin: 0 auto 40px;
-  }
+  .hero .tagline { font-size: 18px; color: var(--text-dim); max-width: 560px; margin: 0 auto 40px; }
 
-  /* ============ CARDS ============ */
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 24px 28px;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-  .card:hover { border-color: var(--border-bright); box-shadow: 0 4px 24px rgba(0,0,0,0.1); }
-  .card--elevated {
-    background: var(--surface-elevated);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  }
-  .card--accent { border-color: color-mix(in srgb, var(--cyan) 30%, transparent); }
-
-  .card-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+  /* CARDS */
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px 28px; transition: border-color 0.2s; }
+  .card:hover { border-color: var(--border-bright); }
+  .card--elevated { background: var(--surface-elevated); }
+  .card-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
   .dot { width:8px; height:8px; border-radius:50%; display:inline-block; }
 
-  /* ============ KPI ROW ============ */
-  .kpi-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-  }
-  .kpi {
-    text-align: center;
-    padding: 28px 20px;
-  }
-  .kpi-value {
-    font-size: 42px;
-    font-weight: 700;
-    letter-spacing: -1px;
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-  .kpi-label {
-    font-size: 13px;
-    color: var(--text-dim);
-    font-family: var(--font-mono);
-  }
+  /* KPI */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+  .kpi { text-align: center; padding: 24px 16px; }
+  .kpi-value { font-size: 38px; font-weight: 700; line-height: 1; margin-bottom: 6px; }
+  .kpi-label { font-size: 13px; color: var(--text-dim); }
 
-  /* ============ SECTION HEADER ============ */
-  .section-header {
-    margin-bottom: 32px;
-  }
-  .section-header h2 {
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: -1px;
-    margin-bottom: 8px;
-  }
-  .section-header p {
-    color: var(--text-dim);
-    font-size: 16px;
-    max-width: 640px;
-  }
+  .section-header { margin-bottom: 32px; }
+  .section-header h2 { font-size: 30px; font-weight: 700; letter-spacing: -1px; margin-bottom: 8px; }
+  .section-header p { color: var(--text-dim); font-size: 15px; max-width: 600px; }
 
-  /* ============ FEATURE GRID ============ */
-  .feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 16px;
-  }
-  .feature-icon {
-    font-size: 28px;
-    margin-bottom: 12px;
-  }
-  .feature-title {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 6px;
-  }
-  .feature-desc {
-    font-size: 13px;
-    color: var(--text-dim);
-    line-height: 1.6;
-  }
+  .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .feature-icon { font-size: 28px; margin-bottom: 10px; }
+  .feature-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .feature-desc { font-size: 13px; color: var(--text-dim); line-height: 1.5; }
 
-  /* ============ ARCHITECTURE ============ */
-  .arch-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  .arch-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-  .inner-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-  .inner-card {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 12px 16px;
-  }
-  .inner-card .title { font-weight:600; font-size:13px; margin-bottom:4px; }
-  .inner-card .desc { color:var(--text-dim); font-size:12px; line-height:1.5; }
-  .inner-card code {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    background: var(--cyan-dim);
-    color: var(--cyan);
-    padding: 1px 5px;
-    border-radius: 3px;
-  }
+  /* FLOW ARROW */
+  .flow-arrow { display: flex; justify-content: center; align-items: center; gap: 8px; color: var(--text-dim); font-size: 12px; padding: 4px 0; }
+  .flow-arrow svg { width:20px; height:20px; fill:none; stroke:var(--border-bright); stroke-width:2; stroke-linecap:round; }
 
-  /* Flow arrow */
-  .flow-arrow {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    color: var(--text-dim);
-    font-family: var(--font-mono);
-    font-size: 12px;
-    padding: 4px 0;
-  }
-  .flow-arrow svg { width:20px; height:20px; fill:none; stroke:var(--border-bright); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+  /* MERMAID */
+  .mermaid-wrap { position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px; overflow: hidden; }
+  .mermaid-wrap .mermaid-inner { overflow: auto; cursor: grab; }
+  .mermaid-wrap .mermaid-inner:active { cursor: grabbing; }
+  .zoom-controls { position: absolute; top: 12px; right: 12px; display: flex; gap: 4px; z-index: 10; }
+  .zoom-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-dim); font-size: 14px; font-weight: 600; }
+  .zoom-btn:hover { background: var(--surface-elevated); color: var(--text); }
 
-  /* ============ TIMELINE / ROADMAP ============ */
-  .timeline {
-    position: relative;
-    padding-left: 32px;
-  }
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 11px;
-    top: 8px;
-    bottom: 8px;
-    width: 2px;
-    background: var(--border-bright);
-  }
-  .timeline-item {
-    position: relative;
-    margin-bottom: 24px;
-  }
-  .timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -25px;
-    top: 8px;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    border: 2px solid var(--cyan);
-    background: var(--bg);
-  }
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 11px; top: 8px; bottom: 8px; width: 2px; background: var(--border-bright); }
+  .timeline-item { position: relative; margin-bottom: 20px; }
+  .timeline-item::before { content: ''; position: absolute; left: -25px; top: 8px; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--cyan); background: var(--bg); }
   .timeline-item.done::before { background: var(--green); border-color: var(--green); }
   .timeline-item.active::before { background: var(--cyan); border-color: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
   .timeline-item.future::before { border-color: var(--text-dim); }
-  .timeline-phase {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 4px;
-  }
-  .timeline-title { font-weight:600; font-size:16px; margin-bottom:4px; }
-  .timeline-desc { font-size:13px; color:var(--text-dim); line-height:1.6; }
+  .timeline-phase { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; }
+  .timeline-title { font-weight:600; font-size:15px; margin-bottom:2px; }
+  .timeline-desc { font-size:13px; color:var(--text-dim); }
 
-  /* ============ TECH STACK PILLS ============ */
   .pills { display:flex; gap:8px; flex-wrap:wrap; }
-  .pill {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 6px 12px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
+  .pill { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 6px 12px; font-size: 12px; font-weight: 500; }
 
-  /* ============ PRICING TABLE ============ */
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 16px;
-  }
-  .pricing-card { text-align:center; padding:32px 24px; }
-  .pricing-card.featured { border-color: var(--cyan); box-shadow: 0 0 30px var(--cyan-dim); }
-  .pricing-tier { font-family:var(--font-mono); font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-dim); margin-bottom:12px; }
-  .pricing-price { font-size:36px; font-weight:700; margin-bottom:4px; }
-  .pricing-period { font-size:13px; color:var(--text-dim); margin-bottom:20px; }
-  .pricing-features { list-style:none; text-align:left; font-size:13px; }
-  .pricing-features li { padding:6px 0; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px; }
-  .pricing-features li:last-child { border:none; }
-  .check { color:var(--green); font-weight:bold; }
-
-  /* ============ MERMAID ============ */
-  .mermaid-wrap {
-    position: relative;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 24px;
-    overflow: hidden;
-  }
-  .mermaid-wrap .mermaid-inner {
-    overflow: auto;
-    cursor: grab;
-  }
-  .mermaid-wrap .mermaid-inner:active { cursor: grabbing; }
-  .zoom-controls {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    display: flex;
-    gap: 4px;
-    z-index: 10;
-  }
-  .zoom-btn {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    width: 28px;
-    height: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: var(--text-dim);
-    font-size: 14px;
-    font-weight: 600;
-    transition: background 0.2s;
-  }
-  .zoom-btn:hover { background: var(--surface-elevated); color: var(--text); }
-
-  /* ============ CALLOUT ============ */
-  .callout {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--cyan);
-    border-radius: 0 10px 10px 0;
-    padding: 16px 20px;
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--text-dim);
-  }
-  .callout strong { color: var(--text); }
-  .callout code { font-family:var(--font-mono); font-size:12px; background:var(--cyan-dim); color:var(--cyan); padding:1px 5px; border-radius:3px; }
-
-  /* ============ RESPONSIVE ============ */
   @media (max-width: 768px) {
     .slide { padding: 40px 20px; }
     .hero { padding: 60px 20px 40px; }
-    .arch-row { grid-template-columns: 1fr; }
-    .inner-grid { grid-template-columns: 1fr; }
     nav { padding: 10px 20px; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAVIGATION -->
 <nav>
   <a href="#hero">Overview</a>
-  <a href="#problem">Context</a>
-  <a href="#solution">Approach</a>
+  <a href="#problem">The Problem</a>
+  <a href="#how">How It Works</a>
   <a href="#architecture">Architecture</a>
-  <a href="#features">Capabilities</a>
-  <a href="#tech">Tech Stack</a>
-  <a href="#roadmap">Status</a>
-  <a href="#diagrams">Diagrams</a>
+  <a href="#features">Features</a>
+  <a href="#roadmap">Roadmap</a>
 </nav>
 
 <!-- HERO -->
 <section id="hero" class="slide hero">
-  <div class="hero-badge anim" style="--i:0"><span class="pulse"></span> Technical Overview</div>
-  <h1 class="anim" style="--i:1">
-    <span>NextbaseAI</span><br>
-    Platform Architecture
-  </h1>
+  <div class="hero-badge anim" style="--i:0"><span class="pulse"></span> Industrial AI</div>
+  <h1 class="anim" style="--i:1"><span>NextbaseAI</span><br>Your Factory's AI Copilot</h1>
   <p class="tagline anim" style="--i:2">
-    An industrial AI assistant built on OpenClaw that integrates with PLCs, parses electrical schematics, and delivers troubleshooting support through WhatsApp and a mobile PWA.
+    An AI assistant that reads your PLCs, understands your electrical schematics, and helps your maintenance team — via WhatsApp.
   </p>
   <div class="kpi-grid anim" style="--i:3">
-    <div class="card kpi anim-scale" style="--i:4">
-      <div class="kpi-value" style="color:var(--cyan)">v2.0</div>
-      <div class="kpi-label">current version</div>
+    <div class="card kpi" style="--i:4">
+      <div class="kpi-value" style="color:var(--cyan)">💬</div>
+      <div class="kpi-label">WhatsApp + Mobile App</div>
     </div>
-    <div class="card kpi anim-scale" style="--i:5">
-      <div class="kpi-value" style="color:var(--green)">2</div>
-      <div class="kpi-label">custom skills</div>
+    <div class="card kpi" style="--i:5">
+      <div class="kpi-value" style="color:var(--green)">⚡</div>
+      <div class="kpi-label">Live PLC Data</div>
     </div>
-    <div class="card kpi anim-scale" style="--i:6">
-      <div class="kpi-value" style="color:var(--orange)">0</div>
-      <div class="kpi-label">external databases</div>
+    <div class="card kpi" style="--i:6">
+      <div class="kpi-value" style="color:var(--orange)">🔌</div>
+      <div class="kpi-label">Schematic Intelligence</div>
     </div>
-    <div class="card kpi anim-scale" style="--i:7">
-      <div class="kpi-value" style="color:var(--purple)">1</div>
-      <div class="kpi-label">container per customer</div>
+    <div class="card kpi" style="--i:7">
+      <div class="kpi-value" style="color:var(--purple)">🔒</div>
+      <div class="kpi-label">Isolated per Customer</div>
     </div>
   </div>
 </section>
@@ -483,405 +176,61 @@
 <!-- PROBLEM -->
 <section id="problem" class="slide">
   <div class="section-header anim" style="--i:0">
-    <h2>Context 🏭</h2>
-    <p>The current state of industrial maintenance and the gaps NextbaseAI addresses.</p>
+    <h2>The Problem 🏭</h2>
+    <p>What happens today when a machine stops.</p>
   </div>
 
-  <div class="feature-grid">
-    <div class="card anim" style="--i:1">
-      <div class="feature-icon">📞</div>
-      <div class="feature-title">Slow Incident Response</div>
-      <div class="feature-desc">When a machine faults, the technician needs to reach an expert. That expert may be unavailable. Diagnosis time depends on who picks up the phone — not on the data the machine already has.</div>
-    </div>
-    <div class="card anim" style="--i:2">
-      <div class="feature-icon">📋</div>
-      <div class="feature-title">Inaccessible Documentation</div>
-      <div class="feature-desc">Manuals and schematics exist but are rarely consulted on the floor. Finding the right page in a 600-page PDF is slower than trial and error. The information is there — the interface to it is missing.</div>
-    </div>
-    <div class="card anim" style="--i:3">
-      <div class="feature-icon">🧠</div>
-      <div class="feature-title">Tribal Knowledge</div>
-      <div class="feature-desc">Senior technicians carry decades of undocumented knowledge. When they leave, that expertise is lost. Onboarding new staff takes years of accumulated experience that was never written down.</div>
-    </div>
-    <div class="card anim" style="--i:4">
-      <div class="feature-icon">📊</div>
-      <div class="feature-title">Underutilized PLC Data</div>
-      <div class="feature-desc">PLCs continuously collect process data (temperatures, pressures, speeds, fault codes). In most factories, this data is only checked after a failure. There's no continuous, intelligent layer between the PLC and the maintenance team.</div>
-    </div>
-  </div>
-</section>
-
-<!-- APPROACH -->
-<section id="solution" class="slide">
-  <div class="section-header anim" style="--i:0">
-    <h2>Approach ⚡</h2>
-    <p>NextbaseAI sits between the machine and the maintenance team. It reads PLC data, understands schematics, and communicates via the channels technicians already use.</p>
-  </div>
-
-  <div class="feature-grid">
-    <div class="card card--accent anim" style="--i:1">
-      <div class="feature-icon">💬</div>
-      <div class="feature-title">WhatsApp Interface</div>
-      <div class="feature-desc">The primary user interface is WhatsApp — no custom app required. Technicians can send text or voice messages. The agent processes natural language queries and responds with structured answers, annotated schematics, and live data.</div>
-    </div>
-    <div class="card card--accent anim" style="--i:2">
-      <div class="feature-icon">⚡</div>
-      <div class="feature-title">Real-Time PLC Access</div>
-      <div class="feature-desc">The AnlageAI Gateway runs on-premise and exposes PLC tag values via REST API. The agent can read any configured tag on demand — temperatures, pressures, fault codes, motor states — without direct PLC access. Read-only by design.</div>
-    </div>
-    <div class="card card--accent anim" style="--i:3">
-      <div class="feature-icon">🔌</div>
-      <div class="feature-title">Schematic Intelligence</div>
-      <div class="feature-desc">Electrical schematics are converted to ESCL (a structured text format we developed). The agent can trace power paths, find cross-references, analyze failure impact, and generate annotated schematic images — all programmatically.</div>
-    </div>
-    <div class="card card--accent anim" style="--i:4">
-      <div class="feature-icon">📊</div>
-      <div class="feature-title">Token-Efficient Monitoring</div>
-      <div class="feature-desc">A separate daemon process polls PLC values at configurable intervals. Alert rules are evaluated deterministically — no LLM involved. The AI agent is only woken when a rule triggers, keeping operational cost near zero during normal conditions.</div>
-    </div>
-    <div class="card card--accent anim" style="--i:5">
-      <div class="feature-icon">📱</div>
-      <div class="feature-title">Mobile PWA</div>
-      <div class="feature-desc">A progressive web app provides a richer chat interface for users who prefer it over WhatsApp. Supports image attachments, audio messages, and a responsive layout. No app store deployment required.</div>
-    </div>
-    <div class="card card--accent anim" style="--i:6">
-      <div class="feature-icon">🔒</div>
-      <div class="feature-title">Isolated Deployment</div>
-      <div class="feature-desc">Each customer runs in a dedicated Docker container. Machine data, conversation history, schematics, and configs are fully isolated. No shared database, no multi-tenant data mixing.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ARCHITECTURE -->
-<section id="architecture" class="slide">
-  <div class="section-header anim" style="--i:0">
-    <h2>Architecture 🏗️</h2>
-    <p>Three-layer architecture: on-premise gateway, cloud agent container, and user channels. OpenClaw is the runtime — custom code only fills gaps it doesn't cover natively.</p>
-  </div>
-
-  <div class="arch-grid">
-    <!-- Factory (On-Premise) -->
-    <div class="card card--elevated anim" style="--i:1">
-      <div class="card-label" style="color:var(--orange)"><span class="dot" style="background:var(--orange)"></span> Customer's Factory — On-Premise</div>
-      <div class="inner-grid">
-        <div class="inner-card">
-          <div class="title">PLCs</div>
-          <div class="desc">Siemens, Allen-Bradley, Schneider — any industrial PLC with OPC-UA, Modbus, or proprietary protocols</div>
-        </div>
-        <div class="inner-card">
-          <div class="title">AnlageAI Gateway</div>
-          <div class="desc">Runs on-premise. REST API <code>:3000</code>. Reads PLC tags, translates protocols, serves data securely via HTTPS/VPN</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="flow-arrow anim" style="--i:2">
-      <svg viewBox="0 0 20 20"><path d="M10 4 L10 16 M6 12 L10 16 L14 12"/></svg>
-      HTTPS / VPN
-    </div>
-
-    <!-- Cloud Container -->
-    <div class="card card--elevated anim" style="--i:3">
-      <div class="card-label" style="color:var(--cyan)"><span class="dot" style="background:var(--cyan)"></span> Cloud — Per-Customer Container</div>
-      <div class="inner-grid">
-        <div class="inner-card" style="grid-column: span 2;">
-          <div class="title">OpenClaw — Center of Everything</div>
-          <div class="desc">Claude LLM with custom industrial prompts • WhatsApp bridge • Native file reading • Memory & persistence • Scheduled actions • Admin Panel <code>:18789</code></div>
-        </div>
-        <div class="inner-card">
-          <div class="title">anlageai-gateway skill</div>
-          <div class="desc">CLI that reads live PLC data: <code>status</code>, <code>read</code>, <code>browse</code>, <code>search</code>, <code>dictionary</code></div>
-        </div>
-        <div class="inner-card">
-          <div class="title">escl-query skill</div>
-          <div class="desc">Electrical schematic analysis: <code>lookup</code>, <code>trace</code>, <code>crossref</code>, <code>impact</code>, <code>troubleshoot</code></div>
-        </div>
-        <div class="inner-card">
-          <div class="title">Machine Folders</div>
-          <div class="desc">Filesystem-based knowledge: <code>machine.yml</code> + manuals + ESCL schematics + conversation logs per machine</div>
-        </div>
-        <div class="inner-card">
-          <div class="title">Monitoring Daemon</div>
-          <div class="desc">Separate process, NO LLM. Polls PLC tags, evaluates rules deterministically, wakes AI only on alerts</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="flow-arrow anim" style="--i:4">
-      <svg viewBox="0 0 20 20"><path d="M10 4 L10 16 M6 12 L10 16 L14 12"/></svg>
-      WhatsApp / PWA
-    </div>
-
-    <!-- Users -->
-    <div class="card anim" style="--i:5">
-      <div class="card-label" style="color:var(--green)"><span class="dot" style="background:var(--green)"></span> Users</div>
-      <div class="inner-grid">
-        <div class="inner-card">
-          <div class="title">Technicians</div>
-          <div class="desc">On the factory floor. Send voice messages with gloves on. Get instant troubleshooting guidance.</div>
-        </div>
-        <div class="inner-card">
-          <div class="title">Engineers</div>
-          <div class="desc">Deep-dive into schematics. Trace circuits. Analyze failure impact. Review monitoring dashboards.</div>
-        </div>
-        <div class="inner-card">
-          <div class="title">Operators</div>
-          <div class="desc">Check real-time values. Get alerts when parameters drift. Mobile PWA for quick access.</div>
-        </div>
-        <div class="inner-card">
-          <div class="title">Managers</div>
-          <div class="desc">Shift handover reports. Equipment health summaries. Downtime tracking and analysis.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="callout anim" style="--i:6; margin-top:16px;">
-    <strong>Core Principle:</strong> If OpenClaw can do it natively, don't rebuild it. Custom code exists <em>only</em> for connecting to PLC gateways, parsing ESCL schematics, and polling values without burning tokens.
-  </div>
-</section>
-
-<!-- FEATURES -->
-<section id="features" class="slide">
-  <div class="section-header anim" style="--i:0">
-    <h2>Key Capabilities 🔧</h2>
-    <p>The two custom skills that extend OpenClaw for industrial use.</p>
-  </div>
-
-  <div class="arch-row">
-    <div class="card anim" style="--i:1">
-      <div class="card-label" style="color:var(--cyan)"><span class="dot" style="background:var(--cyan)"></span> ESCL — Electrical Schematic Context Language</div>
-      <p style="font-size:14px; color:var(--text-dim); margin-bottom:12px;">A domain-specific format we created to represent electrical schematics as structured text. The AI can query them like a database.</p>
-      <div class="pills">
-        <span class="pill"><code>lookup</code> Find any component</span>
-        <span class="pill"><code>trace</code> Follow power path</span>
-        <span class="pill"><code>crossref</code> Find references</span>
-        <span class="pill"><code>impact</code> Failure analysis</span>
-        <span class="pill"><code>troubleshoot</code> Guided diagnosis</span>
-        <span class="pill"><code>safety</code> Safety circuits</span>
-      </div>
-    </div>
-
-    <div class="card anim" style="--i:2">
-      <div class="card-label" style="color:var(--green)"><span class="dot" style="background:var(--green)"></span> Visual Schematic Annotation</div>
-      <p style="font-size:14px; color:var(--text-dim); margin-bottom:12px;">Python + Pillow generates annotated schematic images. Highlights components, traces paths, adds callout boxes — sent directly in WhatsApp.</p>
-      <div class="pills">
-        <span class="pill">🎯 Component highlighting</span>
-        <span class="pill">🔴 Path tracing</span>
-        <span class="pill">📝 Callout boxes</span>
-        <span class="pill">🎨 Color coding</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="arch-row" style="margin-top:16px;">
-    <div class="card anim" style="--i:3">
-      <div class="card-label" style="color:var(--orange)"><span class="dot" style="background:var(--orange)"></span> PLC Integration</div>
-      <p style="font-size:14px; color:var(--text-dim); margin-bottom:12px;">The AnlageAI Gateway runs on-premise and exposes PLC data via REST API. The agent reads values in real-time without touching the PLC directly.</p>
-      <div class="pills">
-        <span class="pill">📊 Real-time tag values</span>
-        <span class="pill">🔍 Tag search & browse</span>
-        <span class="pill">📋 Data dictionary</span>
-        <span class="pill">🔒 Read-only access</span>
-      </div>
-    </div>
-
-    <div class="card anim" style="--i:4">
-      <div class="card-label" style="color:var(--purple)"><span class="dot" style="background:var(--purple)"></span> Monitoring & Alerts</div>
-      <p style="font-size:14px; color:var(--text-dim); margin-bottom:12px;">Lightweight daemon polls PLCs without using LLM tokens. Alert rules evaluated deterministically. Agent wakes only when needed.</p>
-      <div class="pills">
-        <span class="pill">⚡ Zero-token polling</span>
-        <span class="pill">📱 WhatsApp alerts</span>
-        <span class="pill">📈 Threshold rules</span>
-        <span class="pill">🧠 AI analysis on trigger</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TECH STACK -->
-<section id="tech" class="slide">
-  <div class="section-header anim" style="--i:0">
-    <h2>Tech Stack 🛠️</h2>
-    <p>Intentionally minimal. The design principle: if OpenClaw handles it natively, don't rebuild it.</p>
-  </div>
-
-  <div class="feature-grid">
-    <div class="card anim" style="--i:1">
-      <div class="card-label" style="color:var(--cyan)"><span class="dot" style="background:var(--cyan)"></span> Runtime</div>
-      <div class="pills">
-        <span class="pill">Node.js 22+</span>
-        <span class="pill">TypeScript</span>
-        <span class="pill">pnpm</span>
-        <span class="pill">ES2022</span>
-      </div>
-    </div>
-    <div class="card anim" style="--i:2">
-      <div class="card-label" style="color:var(--green)"><span class="dot" style="background:var(--green)"></span> AI & Framework</div>
-      <div class="pills">
-        <span class="pill">OpenClaw</span>
-        <span class="pill">Claude (Anthropic)</span>
-        <span class="pill">Custom Skills</span>
-        <span class="pill">ESCL Parser</span>
-      </div>
-    </div>
-    <div class="card anim" style="--i:3">
-      <div class="card-label" style="color:var(--orange)"><span class="dot" style="background:var(--orange)"></span> Infrastructure</div>
-      <div class="pills">
-        <span class="pill">Docker</span>
-        <span class="pill">1 container/customer</span>
-        <span class="pill">Filesystem-based</span>
-        <span class="pill">No database</span>
-      </div>
-    </div>
-    <div class="card anim" style="--i:4">
-      <div class="card-label" style="color:var(--purple)"><span class="dot" style="background:var(--purple)"></span> Channels</div>
-      <div class="pills">
-        <span class="pill">WhatsApp</span>
-        <span class="pill">Mobile PWA</span>
-        <span class="pill">Admin Panel</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="callout anim" style="--i:5; margin-top:16px;">
-    <strong>External dependencies:</strong> <code>commander</code> (CLI) and <code>yaml</code> (config parsing). Everything else — LLM integration, WhatsApp bridge, memory, scheduling — comes from OpenClaw.
-  </div>
-</section>
-
-<!-- ROADMAP -->
-<section id="roadmap" class="slide">
-  <div class="section-header anim" style="--i:0">
-    <h2>Development Status 🗺️</h2>
-    <p>Current progress and planned work.</p>
-  </div>
-
-  <div class="timeline">
-    <div class="timeline-item done anim" style="--i:1">
-      <div class="timeline-phase" style="color:var(--green)">✅ Completed</div>
-      <div class="timeline-title">Workspace Architecture v2</div>
-      <div class="timeline-desc">SOUL.md for persona, MACHINES.md generated from YAML, folder-per-machine structure. OpenClaw as the center — no custom RAG, no custom DB.</div>
-    </div>
-
-    <div class="timeline-item done anim" style="--i:2">
-      <div class="timeline-phase" style="color:var(--green)">✅ Completed</div>
-      <div class="timeline-title">ESCL Query Skill</div>
-      <div class="timeline-desc">Hand-written recursive descent parser. Lookup, trace, crossref, impact analysis, visual annotation with Pillow. Full electrical schematic intelligence.</div>
-    </div>
-
-    <div class="timeline-item done anim" style="--i:3">
-      <div class="timeline-phase" style="color:var(--green)">✅ Completed</div>
-      <div class="timeline-title">AnlageAI Gateway Skill</div>
-      <div class="timeline-desc">REST API integration for live PLC data. Status, read, browse, search, dictionary commands. Works with any gateway deployment.</div>
-    </div>
-
-    <div class="timeline-item active anim" style="--i:4">
-      <div class="timeline-phase" style="color:var(--cyan)">🔄 In Progress</div>
-      <div class="timeline-title">Mobile PWA Improvements</div>
-      <div class="timeline-desc">Image support, audio messages, collapsible sidebar, activity card fix. Bringing mobile experience to parity with modern chat apps.</div>
-    </div>
-
-    <div class="timeline-item active anim" style="--i:5">
-      <div class="timeline-phase" style="color:var(--cyan)">🔄 In Progress</div>
-      <div class="timeline-title">Smart Onboarding</div>
-      <div class="timeline-desc">Interactive setup wizard + doctor command. Step-by-step configuration, health checks, validation. <code>npm run setup</code> to go from zero to running.</div>
-    </div>
-
-    <div class="timeline-item future anim" style="--i:6">
-      <div class="timeline-phase" style="color:var(--text-dim)">📋 Next Up</div>
-      <div class="timeline-title">Multi-Machine Gateway</div>
-      <div class="timeline-desc">Support multiple PLCs per gateway. Customers with 5-50 machines use a single deployment. Critical for enterprise deals.</div>
-    </div>
-
-    <div class="timeline-item future anim" style="--i:7">
-      <div class="timeline-phase" style="color:var(--text-dim)">📋 Next Up</div>
-      <div class="timeline-title">Notification Rules UI</div>
-      <div class="timeline-desc">Web UI for creating alert rules. Tag selection, condition builder, test notifications. No YAML editing required.</div>
-    </div>
-
-    <div class="timeline-item future anim" style="--i:8">
-      <div class="timeline-phase" style="color:var(--text-dim)">📋 Next Up</div>
-      <div class="timeline-title">Historical Data & Trends</div>
-      <div class="timeline-desc">Time-series storage, charts, trend analysis. Identify intermittent issues, track process drift, enable preventive maintenance.</div>
-    </div>
-
-    <div class="timeline-item future anim" style="--i:9">
-      <div class="timeline-phase" style="color:var(--text-dim)">🔮 Future</div>
-      <div class="timeline-title">Computer Vision QC</div>
-      <div class="timeline-desc">Camera-based quality inspection on production lines. Defect detection, classification, automated rejection. Expand from monitoring to active production improvement.</div>
-    </div>
-  </div>
-</section>
-
-<!-- DIAGRAMS -->
-<section id="diagrams" class="slide">
-  <div class="section-header anim" style="--i:0">
-    <h2>System Diagrams 📊</h2>
-    <p>How data flows through the system, from PLC to technician.</p>
-  </div>
-
-  <!-- Data Flow Diagram -->
   <div class="card card--elevated anim" style="--i:1; margin-bottom:20px;">
-    <div class="card-label" style="color:var(--cyan)"><span class="dot" style="background:var(--cyan)"></span> Data Flow — From Machine to Technician</div>
-    <div class="mermaid-wrap">
-      <div class="zoom-controls">
-        <button class="zoom-btn" onclick="zoomMermaid(this, 1.2)">+</button>
-        <button class="zoom-btn" onclick="zoomMermaid(this, 0.8)">−</button>
-        <button class="zoom-btn" onclick="resetZoom(this)">⟲</button>
-      </div>
+    <div class="mermaid-wrap" style="border:none; padding:0; background:transparent;">
       <div class="mermaid-inner">
         <pre class="mermaid">
 flowchart LR
-    subgraph Factory["🏭 Factory Floor"]
-        PLC1["PLC 1\nSiemens S7"]
-        PLC2["PLC 2\nAllen-Bradley"]
-        PLCN["PLC N\n..."]
-        SENSORS["Sensors\nTemp / Press / Speed"]
-    end
+    A["🔴 Machine\nFaults"] --> B["📞 Technician\ncalls expert"]
+    B --> C["⏳ Expert\nunavailable"]
+    C --> D["📋 Search 600-page\nPDF manual"]
+    D --> E["🔧 Trial &\nerror"]
+    E --> F["💸 Hours of\ndowntime"]
 
-    subgraph GW["⚡ AnlageAI Gateway"]
-        REST["REST API\n:3000"]
-        PROTO["Protocol\nTranslation"]
-    end
-
-    subgraph Cloud["☁️ Cloud Container"]
-        OC["OpenClaw\nAgent Core"]
-        GWS["gateway-skill\nPLC Read"]
-        ESCL["escl-query\nSchematic AI"]
-        MON["Monitoring\nDaemon"]
-        FILES["Machine Folders\nYAML + Manuals + ESCL"]
-    end
-
-    subgraph Users["👥 Users"]
-        WA["💬 WhatsApp"]
-        PWA["📱 Mobile PWA"]
-        ADMIN["🖥️ Admin Panel"]
-    end
-
-    SENSORS --> PLC1 & PLC2 & PLCN
-    PLC1 & PLC2 & PLCN --> PROTO
-    PROTO --> REST
-    REST -->|"HTTPS/VPN"| GWS
-    REST -->|"polling"| MON
-    GWS --> OC
-    ESCL --> OC
-    FILES --> OC
-    MON -->|"alert trigger"| OC
-    OC --> WA & PWA & ADMIN
-
-    style Factory fill:#1a1f2a,stroke:#fb923c,color:#e8ecf2
-    style GW fill:#1a1f2a,stroke:#fbbf24,color:#e8ecf2
-    style Cloud fill:#1a1f2a,stroke:#22d3ee,color:#e8ecf2
-    style Users fill:#1a1f2a,stroke:#34d399,color:#e8ecf2
+    style A fill:#1e2433,stroke:#f87171,color:#e8ecf2
+    style B fill:#1e2433,stroke:#fb923c,color:#e8ecf2
+    style C fill:#1e2433,stroke:#fb923c,color:#e8ecf2
+    style D fill:#1e2433,stroke:#fbbf24,color:#e8ecf2
+    style E fill:#1e2433,stroke:#fbbf24,color:#e8ecf2
+    style F fill:#1e2433,stroke:#f87171,color:#e8ecf2
         </pre>
       </div>
     </div>
   </div>
 
-  <!-- Troubleshooting Sequence -->
-  <div class="card card--elevated anim" style="--i:2; margin-bottom:20px;">
-    <div class="card-label" style="color:var(--green)"><span class="dot" style="background:var(--green)"></span> Sequence — Troubleshooting Flow</div>
-    <div class="mermaid-wrap">
+  <div class="feature-grid">
+    <div class="card anim" style="--i:2">
+      <div class="feature-icon">⏱️</div>
+      <div class="feature-title">Slow Response</div>
+      <div class="feature-desc">Diagnosis depends on who picks up the phone, not on data the machine already has.</div>
+    </div>
+    <div class="card anim" style="--i:3">
+      <div class="feature-icon">📋</div>
+      <div class="feature-title">Lost Knowledge</div>
+      <div class="feature-desc">Senior technicians carry decades of undocumented expertise. When they leave, it's gone.</div>
+    </div>
+    <div class="card anim" style="--i:4">
+      <div class="feature-icon">📊</div>
+      <div class="feature-title">Wasted Data</div>
+      <div class="feature-desc">PLCs collect thousands of data points. Most are only checked after something breaks.</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="slide">
+  <div class="section-header anim" style="--i:0">
+    <h2>How It Works ⚡</h2>
+    <p>NextbaseAI sits between the machine and your team.</p>
+  </div>
+
+  <div class="card card--elevated anim" style="--i:1; margin-bottom:20px;">
+    <div class="card-label" style="color:var(--green)"><span class="dot" style="background:var(--green)"></span> Troubleshooting Example</div>
+    <div class="mermaid-wrap" style="border:none; padding:0; background:transparent;">
       <div class="zoom-controls">
         <button class="zoom-btn" onclick="zoomMermaid(this, 1.2)">+</button>
         <button class="zoom-btn" onclick="zoomMermaid(this, 0.8)">−</button>
@@ -890,41 +239,59 @@ flowchart LR
       <div class="mermaid-inner">
         <pre class="mermaid">
 sequenceDiagram
-    actor T as Technician
-    participant WA as WhatsApp
-    participant AI as NextbaseAI Agent
-    participant GW as Gateway Skill
-    participant PLC as PLC
-    participant SC as ESCL Skill
-    participant SCH as Schematics
+    actor T as 👷 Technician
+    participant WA as 💬 WhatsApp
+    participant AI as 🤖 NextbaseAI
+    participant PLC as ⚡ Siemens PLC
+    participant SCH as 📄 Schematics
 
-    T->>WA: Motor M3 is overheating, what should I check?
+    T->>WA: "Motor M3 is overheating"
     WA->>AI: Forward message
-    
-    AI->>GW: read --tag M3.Temperature
-    GW->>PLC: GET /api/tags/M3.Temperature
-    PLC-->>GW: 87.3 C
-    GW-->>AI: 87.3 C (limit: 75 C)
-    
-    AI->>SC: trace --tag M3 --direction upstream
-    SC->>SCH: Parse ESCL files
-    SCH-->>SC: Power path: Q7 -> K12 -> M3
-    SC-->>AI: Breaker Q7, Contactor K12, Thermal F5
-    
-    AI->>SC: impact --tag F5
-    SC-->>AI: Thermal relay F5 protects M3, trips at 85C
-    
-    AI-->>WA: Analysis + annotated schematic image
-    WA-->>T: Temperature 87.3C (above 75C limit). Thermal relay F5 should have tripped. Check F5 contacts and reset. Power path: Q7 -> K12 -> M3
+
+    AI->>PLC: Read temperature
+    PLC-->>AI: 87.3°C (limit: 75°C)
+
+    AI->>SCH: Trace power path for M3
+    SCH-->>AI: Breaker Q7 → Contactor K12 → M3
+
+    AI->>SCH: What protects M3?
+    SCH-->>AI: Thermal relay F5, trips at 85°C
+
+    AI-->>WA: Diagnosis + annotated schematic
+    WA-->>T: "Temperature 87.3°C. Thermal relay F5 should have tripped. Check F5 contacts and reset."
         </pre>
       </div>
     </div>
   </div>
 
-  <!-- Alert Flow -->
-  <div class="card card--elevated anim" style="--i:3; margin-bottom:20px;">
-    <div class="card-label" style="color:var(--orange)"><span class="dot" style="background:var(--orange)"></span> Alert Pipeline — Zero-Token Monitoring</div>
-    <div class="mermaid-wrap">
+  <div class="feature-grid">
+    <div class="card anim" style="--i:2">
+      <div class="feature-icon">💬</div>
+      <div class="feature-title">Ask via WhatsApp</div>
+      <div class="feature-desc">Text or voice message — the technician describes the problem in natural language.</div>
+    </div>
+    <div class="card anim" style="--i:3">
+      <div class="feature-icon">⚡</div>
+      <div class="feature-title">AI Reads the PLC</div>
+      <div class="feature-desc">Pulls real-time values from Siemens PLCs. Compatible with all our machines.</div>
+    </div>
+    <div class="card anim" style="--i:4">
+      <div class="feature-icon">🔌</div>
+      <div class="feature-title">Analyzes Schematics</div>
+      <div class="feature-desc">Traces circuits, finds cross-references, identifies the root cause — and sends an annotated image.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section id="architecture" class="slide">
+  <div class="section-header anim" style="--i:0">
+    <h2>Architecture 🏗️</h2>
+    <p>Simple, secure, scalable.</p>
+  </div>
+
+  <div class="card card--elevated anim" style="--i:1">
+    <div class="mermaid-wrap" style="border:none; padding:0; background:transparent;">
       <div class="zoom-controls">
         <button class="zoom-btn" onclick="zoomMermaid(this, 1.2)">+</button>
         <button class="zoom-btn" onclick="zoomMermaid(this, 0.8)">−</button>
@@ -932,32 +299,68 @@ sequenceDiagram
       </div>
       <div class="mermaid-inner">
         <pre class="mermaid">
-flowchart TD
-    A["Monitoring Daemon\n(No LLM)"] -->|"Poll every 30s"| B["Read PLC Tags\nvia Gateway REST"]
-    B --> C{"Evaluate Rules\nDeterministic"}
-    C -->|"All OK"| D["Sleep 30s\n0 tokens used"]
-    C -->|"Threshold Crossed"| E["Wake AI Agent"]
-    E --> F["AI Analyzes Context\nPLC data + Schematics"]
-    F --> G["Generate Alert\nwith Diagnosis"]
-    G --> H["Send via WhatsApp\nto Relevant Users"]
-    H --> I["Log to\nalerts.md"]
-    D --> A
+flowchart TB
+    subgraph Factory["🏭 Customer's Factory"]
+        PLC["Siemens PLC\n(compatible with all machines)"]
+        GW["NextbaseAI Gateway\nOn-Premise · Read-Only"]
+    end
 
-    style A fill:#1e2433,stroke:#fb923c,color:#e8ecf2
-    style C fill:#1e2433,stroke:#fbbf24,color:#e8ecf2
-    style D fill:#1e2433,stroke:#34d399,color:#e8ecf2
-    style E fill:#1e2433,stroke:#f87171,color:#e8ecf2
-    style F fill:#1e2433,stroke:#22d3ee,color:#e8ecf2
-    style H fill:#1e2433,stroke:#34d399,color:#e8ecf2
+    subgraph Cloud["☁️ NextbaseAI Cloud"]
+        AI["AI Agent\nUnderstands machines,\nschematics & data"]
+        MON["Smart Monitoring\nContinuous · Cost-efficient"]
+        KB["Knowledge Base\nManuals · Schematics · History"]
+    end
+
+    subgraph Users["👥 Your Team"]
+        TECH["👷 Technicians\nWhatsApp"]
+        ENG["👨‍💻 Engineers\nMobile App"]
+        MGR["📊 Managers\nReports"]
+    end
+
+    PLC --> GW
+    GW -->|"Secure Connection"| AI
+    GW -->|"Continuous Polling"| MON
+    KB --> AI
+    MON -->|"Alerts"| AI
+    AI --> TECH & ENG & MGR
+
+    style Factory fill:#1a1f2a,stroke:#fb923c,color:#e8ecf2
+    style Cloud fill:#1a1f2a,stroke:#22d3ee,color:#e8ecf2
+    style Users fill:#1a1f2a,stroke:#34d399,color:#e8ecf2
         </pre>
       </div>
     </div>
   </div>
 
-  <!-- ESCL Concept -->
-  <div class="card card--elevated anim" style="--i:4">
-    <div class="card-label" style="color:var(--purple)"><span class="dot" style="background:var(--purple)"></span> ESCL — How Schematics Become Queryable</div>
-    <div class="mermaid-wrap">
+  <div class="feature-grid" style="margin-top:20px;">
+    <div class="card anim" style="--i:2">
+      <div class="feature-icon">🔒</div>
+      <div class="feature-title">Fully Isolated</div>
+      <div class="feature-desc">Each customer gets a dedicated environment. No shared data, no cross-contamination.</div>
+    </div>
+    <div class="card anim" style="--i:3">
+      <div class="feature-icon">🏭</div>
+      <div class="feature-title">Gateway On-Premise</div>
+      <div class="feature-desc">Runs inside the factory. Read-only access to PLC data. Nothing is written back to the machine.</div>
+    </div>
+    <div class="card anim" style="--i:4">
+      <div class="feature-icon">💰</div>
+      <div class="feature-title">Cost-Efficient Monitoring</div>
+      <div class="feature-desc">Continuous monitoring runs without AI costs. The AI is only activated when something needs attention.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features" class="slide">
+  <div class="section-header anim" style="--i:0">
+    <h2>Key Features 🔧</h2>
+  </div>
+
+  <!-- ESCL diagram -->
+  <div class="card card--elevated anim" style="--i:1; margin-bottom:20px;">
+    <div class="card-label" style="color:var(--purple)"><span class="dot" style="background:var(--purple)"></span> Schematic Intelligence (ESCL)</div>
+    <div class="mermaid-wrap" style="border:none; padding:0; background:transparent;">
       <div class="zoom-controls">
         <button class="zoom-btn" onclick="zoomMermaid(this, 1.2)">+</button>
         <button class="zoom-btn" onclick="zoomMermaid(this, 0.8)">−</button>
@@ -966,107 +369,136 @@ flowchart TD
       <div class="mermaid-inner">
         <pre class="mermaid">
 flowchart LR
-    subgraph Input["📄 Input"]
-        PDF["Electrical\nSchematic PDF"]
-        DWG["CAD\nDrawings"]
-    end
+    A["📄 Electrical\nSchematic PDF"] --> B["🔄 ESCL\nConverter"]
+    B --> C["🧠 Queryable\nSchematic"]
+    C --> D["🔍 Find Component"]
+    C --> E["⚡ Trace Power Path"]
+    C --> F["💥 Failure Analysis"]
+    C --> G["🔧 Guided Diagnosis"]
+    D & E & F & G --> H["📱 Answer +\nAnnotated Image"]
 
-    subgraph Convert["🔄 Conversion"]
-        PARSE["ESCL Generator\nPDF to structured text"]
-    end
-
-    subgraph Store["💾 Storage"]
-        ESCL["ESCL Files\n.escl format"]
-        IMG["Page Images\n.png per page"]
-    end
-
-    subgraph Query["🔍 Query Engine"]
-        LOOKUP["lookup\nFind component"]
-        TRACE["trace\nFollow power path"]
-        XREF["crossref\nFind references"]
-        IMPACT["impact\nFailure analysis"]
-        TROUBLE["troubleshoot\nGuided diagnosis"]
-    end
-
-    subgraph Output["📤 Output"]
-        TEXT["Structured\nText Answer"]
-        ANNOT["Annotated\nSchematic Image"]
-    end
-
-    PDF & DWG --> PARSE
-    PARSE --> ESCL & IMG
-    ESCL --> LOOKUP & TRACE & XREF & IMPACT & TROUBLE
-    IMG --> ANNOT
-    LOOKUP & TRACE & XREF & IMPACT & TROUBLE --> TEXT
-    TEXT & ANNOT -->|"via WhatsApp"| USER["👷 Technician"]
-
-    style Input fill:#1a1f2a,stroke:#a78bfa,color:#e8ecf2
-    style Convert fill:#1a1f2a,stroke:#fb923c,color:#e8ecf2
-    style Store fill:#1a1f2a,stroke:#22d3ee,color:#e8ecf2
-    style Query fill:#1a1f2a,stroke:#34d399,color:#e8ecf2
-    style Output fill:#1a1f2a,stroke:#fbbf24,color:#e8ecf2
+    style A fill:#1e2433,stroke:#a78bfa,color:#e8ecf2
+    style B fill:#1e2433,stroke:#fb923c,color:#e8ecf2
+    style C fill:#1e2433,stroke:#22d3ee,color:#e8ecf2
+    style H fill:#1e2433,stroke:#34d399,color:#e8ecf2
         </pre>
       </div>
+    </div>
+  </div>
+
+  <!-- Alert pipeline -->
+  <div class="card card--elevated anim" style="--i:2; margin-bottom:20px;">
+    <div class="card-label" style="color:var(--orange)"><span class="dot" style="background:var(--orange)"></span> Smart Alerting</div>
+    <div class="mermaid-wrap" style="border:none; padding:0; background:transparent;">
+      <div class="zoom-controls">
+        <button class="zoom-btn" onclick="zoomMermaid(this, 1.2)">+</button>
+        <button class="zoom-btn" onclick="zoomMermaid(this, 0.8)">−</button>
+        <button class="zoom-btn" onclick="resetZoom(this)">⟲</button>
+      </div>
+      <div class="mermaid-inner">
+        <pre class="mermaid">
+flowchart LR
+    A["📡 Continuous\nMonitoring"] --> B{"Threshold\nCrossed?"}
+    B -->|"No"| C["✅ All OK\nZero cost"]
+    B -->|"Yes"| D["🤖 AI Analyzes\nPLC + Schematics"]
+    D --> E["📱 Alert via\nWhatsApp"]
+    C --> A
+
+    style A fill:#1e2433,stroke:#fb923c,color:#e8ecf2
+    style B fill:#1e2433,stroke:#fbbf24,color:#e8ecf2
+    style C fill:#1e2433,stroke:#34d399,color:#e8ecf2
+    style D fill:#1e2433,stroke:#22d3ee,color:#e8ecf2
+    style E fill:#1e2433,stroke:#34d399,color:#e8ecf2
+        </pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="feature-grid">
+    <div class="card anim" style="--i:3">
+      <div class="feature-icon">🎤</div>
+      <div class="feature-title">Voice Messages</div>
+      <div class="feature-desc">Technicians can speak naturally — even with gloves on. The AI understands and responds.</div>
+    </div>
+    <div class="card anim" style="--i:4">
+      <div class="feature-icon">📱</div>
+      <div class="feature-title">Mobile App</div>
+      <div class="feature-desc">Rich chat interface with image sharing, audio, and quick access to machine data. No app store needed.</div>
+    </div>
+    <div class="card anim" style="--i:5">
+      <div class="feature-icon">📊</div>
+      <div class="feature-title">Shift Reports</div>
+      <div class="feature-desc">Automatic handover reports between shifts. Equipment status, alerts, and pending tasks — all summarized.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap" class="slide">
+  <div class="section-header anim" style="--i:0">
+    <h2>Roadmap 🗺️</h2>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item done anim" style="--i:1">
+      <div class="timeline-phase" style="color:var(--green)">✅ Done</div>
+      <div class="timeline-title">WhatsApp AI Assistant</div>
+      <div class="timeline-desc">Natural language troubleshooting, voice messages, machine-specific knowledge base.</div>
+    </div>
+    <div class="timeline-item done anim" style="--i:2">
+      <div class="timeline-phase" style="color:var(--green)">✅ Done</div>
+      <div class="timeline-title">Schematic Intelligence (ESCL)</div>
+      <div class="timeline-desc">Electrical schematics converted to queryable format. Trace circuits, find components, analyze failures.</div>
+    </div>
+    <div class="timeline-item done anim" style="--i:3">
+      <div class="timeline-phase" style="color:var(--green)">✅ Done</div>
+      <div class="timeline-title">Live PLC Integration</div>
+      <div class="timeline-desc">On-premise gateway reads Siemens PLC data in real-time. Read-only, secure.</div>
+    </div>
+    <div class="timeline-item active anim" style="--i:4">
+      <div class="timeline-phase" style="color:var(--cyan)">🔄 In Progress</div>
+      <div class="timeline-title">Mobile App + Smart Monitoring</div>
+      <div class="timeline-desc">Dedicated mobile interface. Continuous monitoring with intelligent alerts.</div>
+    </div>
+    <div class="timeline-item future anim" style="--i:5">
+      <div class="timeline-phase" style="color:var(--text-dim)">📋 Next</div>
+      <div class="timeline-title">Multi-Machine Support & Trend Analysis</div>
+      <div class="timeline-desc">Multiple PLCs per deployment. Historical data, charts, and predictive insights.</div>
+    </div>
+    <div class="timeline-item future anim" style="--i:6">
+      <div class="timeline-phase" style="color:var(--text-dim)">🔮 Future</div>
+      <div class="timeline-title">Computer Vision Quality Control</div>
+      <div class="timeline-desc">Camera-based inspection on production lines. Defect detection and classification.</div>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <section class="slide" style="text-align:center; padding:40px;">
-  <p style="color:var(--text-dim); font-family:var(--font-mono); font-size:12px;">
-    NextbaseAI — Built by Romulo Lange de Almeida • 2026
-  </p>
+  <p style="color:var(--text-dim); font-size:12px;">NextbaseAI — Built by Romulo Lange de Almeida • 2026</p>
 </section>
 
 <script>
-  // Mermaid init
   mermaid.initialize({
-    startOnLoad: true,
-    theme: 'base',
+    startOnLoad: true, theme: 'base',
     themeVariables: {
-      primaryColor: '#1e2433',
-      primaryTextColor: '#e8ecf2',
-      primaryBorderColor: '#22d3ee',
-      lineColor: '#7a8599',
-      secondaryColor: '#141820',
-      tertiaryColor: '#1a1f2a',
-      fontFamily: 'Space Grotesk, system-ui, sans-serif',
-      fontSize: '14px'
+      primaryColor: '#1e2433', primaryTextColor: '#e8ecf2', primaryBorderColor: '#22d3ee',
+      lineColor: '#7a8599', secondaryColor: '#141820', tertiaryColor: '#1a1f2a',
+      fontFamily: 'Space Grotesk, system-ui, sans-serif', fontSize: '14px'
     }
   });
-
-  // Zoom controls
   function zoomMermaid(btn, factor) {
-    const inner = btn.closest('.mermaid-wrap').querySelector('.mermaid-inner');
-    const svg = inner.querySelector('svg');
-    if (!svg) return;
+    const inner = btn.closest('.mermaid-wrap').querySelector('.mermaid-inner') || btn.closest('.card').querySelector('.mermaid-inner');
+    const svg = inner?.querySelector('svg'); if (!svg) return;
     const current = parseFloat(svg.style.transform?.match(/scale\(([^)]+)\)/)?.[1] || '1');
-    const newScale = Math.max(0.3, Math.min(3, current * factor));
-    svg.style.transform = `scale(${newScale})`;
+    svg.style.transform = `scale(${Math.max(0.3, Math.min(3, current * factor))})`;
     svg.style.transformOrigin = 'top left';
   }
   function resetZoom(btn) {
-    const inner = btn.closest('.mermaid-wrap').querySelector('.mermaid-inner');
-    const svg = inner.querySelector('svg');
-    if (!svg) return;
+    const inner = btn.closest('.mermaid-wrap').querySelector('.mermaid-inner') || btn.closest('.card').querySelector('.mermaid-inner');
+    const svg = inner?.querySelector('svg'); if (!svg) return;
     svg.style.transform = 'scale(1)';
   }
-  // Scroll zoom on mermaid containers
-  document.querySelectorAll('.mermaid-inner').forEach(el => {
-    el.addEventListener('wheel', e => {
-      if (e.ctrlKey || e.metaKey) {
-        e.preventDefault();
-        const svg = el.querySelector('svg');
-        if (!svg) return;
-        const current = parseFloat(svg.style.transform?.match(/scale\(([^)]+)\)/)?.[1] || '1');
-        const factor = e.deltaY < 0 ? 1.1 : 0.9;
-        const newScale = Math.max(0.3, Math.min(3, current * factor));
-        svg.style.transform = `scale(${newScale})`;
-        svg.style.transformOrigin = 'top left';
-      }
-    }, { passive: false });
-  });
 </script>
-
 </body>
 </html>
