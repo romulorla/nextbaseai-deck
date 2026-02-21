@@ -100,6 +100,105 @@
   /* Feature section with diagram + sidebar */
   .feature-section { display: grid; grid-template-columns: 1fr; gap: 24px; }
 
+  /* CHAT ANIMATION */
+  .chat-phone {
+    max-width: 400px;
+    margin: 0 auto;
+    background: #f0f0f0;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+    border: 1px solid var(--border);
+  }
+  .chat-header {
+    background: #075e54;
+    color: white;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .chat-header .avatar {
+    width: 36px; height: 36px; border-radius: 50%; background: #25d366;
+    display: flex; align-items: center; justify-content: center; font-size: 16px; color: white;
+  }
+  .chat-header .info { flex: 1; }
+  .chat-header .info small { display: block; font-size: 11px; font-weight: 400; opacity: 0.8; }
+  .chat-body {
+    padding: 16px;
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: #e5ddd5;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c5bfb5' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .chat-msg {
+    max-width: 85%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.5;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: chatIn 0.3s ease-out forwards;
+  }
+  .chat-msg.user {
+    background: #dcf8c6;
+    align-self: flex-end;
+    border-bottom-right-radius: 2px;
+    color: #1a1d23;
+  }
+  .chat-msg.bot {
+    background: #ffffff;
+    align-self: flex-start;
+    border-bottom-left-radius: 2px;
+    color: #1a1d23;
+  }
+  .chat-msg .time {
+    font-size: 10px;
+    color: #8c95a4;
+    text-align: right;
+    margin-top: 4px;
+  }
+  .chat-msg strong { font-weight: 600; }
+  .chat-typing {
+    align-self: flex-start;
+    background: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border-bottom-left-radius: 2px;
+    display: none;
+    gap: 4px;
+    align-items: center;
+  }
+  .chat-typing.visible { display: flex; }
+  .chat-typing span {
+    width: 6px; height: 6px; border-radius: 50%; background: #8c95a4;
+    animation: typingDot 1.2s infinite;
+  }
+  .chat-typing span:nth-child(2) { animation-delay: 0.2s; }
+  .chat-typing span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typingDot {
+    0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+    30% { opacity: 1; transform: translateY(-3px); }
+  }
+  @keyframes chatIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .chat-scene-tabs {
+    display: flex; gap: 8px; justify-content: center; margin-bottom: 24px; flex-wrap: wrap;
+  }
+  .chat-scene-tab {
+    padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 500;
+    border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary);
+    cursor: pointer; transition: all 0.15s;
+  }
+  .chat-scene-tab:hover { border-color: var(--accent); color: var(--accent); }
+  .chat-scene-tab.active { background: var(--accent); color: white; border-color: var(--accent); }
+
   @media (max-width: 768px) {
     .container { padding: 40px 20px; }
     nav { padding: 0 20px; gap: 20px; }
@@ -113,6 +212,7 @@
 <nav>
   <span class="nav-logo">NextbaseAI</span>
   <a href="#overview">Overview</a>
+  <a href="#demo">Live Demo</a>
   <a href="#faults">Fault Notifications</a>
   <a href="#troubleshooting">Troubleshooting</a>
   <a href="#plc-data">Live PLC Data</a>
@@ -172,6 +272,34 @@
       </div>
       <h3>Management Reports</h3>
       <p>Shift handovers, equipment health summaries, and downtime analysis. All generated automatically.</p>
+    </div>
+  </div>
+</div>
+
+<!-- LIVE DEMO -->
+<div id="demo" class="container">
+  <div class="label">See It In Action</div>
+  <h2>How it looks in practice</h2>
+  <p class="subtitle">Select a scenario to see how technicians, operators, and managers interact with NextbaseAI through WhatsApp.</p>
+
+  <div class="chat-scene-tabs">
+    <button class="chat-scene-tab active" onclick="playScene('fault', this)">Fault Alert</button>
+    <button class="chat-scene-tab" onclick="playScene('plcdata', this)">PLC Data Query</button>
+    <button class="chat-scene-tab" onclick="playScene('schematic', this)">Schematic Query</button>
+    <button class="chat-scene-tab" onclick="playScene('recipe', this)">Recipe Change</button>
+    <button class="chat-scene-tab" onclick="playScene('report', this)">Production Report</button>
+  </div>
+
+  <div class="chat-phone">
+    <div class="chat-header">
+      <div class="avatar">N</div>
+      <div class="info">
+        NextbaseAI
+        <small>online</small>
+      </div>
+    </div>
+    <div class="chat-body" id="chatBody">
+      <div class="chat-typing" id="chatTyping"><span></span><span></span><span></span></div>
     </div>
   </div>
 </div>
@@ -452,11 +580,11 @@ sequenceDiagram
 <!-- REPORTS -->
 <div id="reports" class="container">
   <div class="label">Automated Reports</div>
-  <h2>Reports for plant managers</h2>
-  <p class="subtitle">Shift handover reports, equipment health summaries, and downtime analysis. Generated automatically and delivered to the right people.</p>
+  <h2>Daily production reports, delivered automatically</h2>
+  <p class="subtitle">At the end of every shift, NextbaseAI compiles a production report from PLC data and sends it directly to the plant manager. No manual input required.</p>
 
   <div class="diagram">
-    <div class="diagram-label">Reporting Pipeline</div>
+    <div class="diagram-label">Daily Report Pipeline</div>
     <div class="zoom-controls">
       <button class="zoom-btn" onclick="zoomMermaid(this, 1.2)">+</button>
       <button class="zoom-btn" onclick="zoomMermaid(this, 0.8)">−</button>
@@ -465,11 +593,10 @@ sequenceDiagram
     <div class="mermaid-inner">
       <pre class="mermaid">
 flowchart LR
-    A["PLC Data<br/>+ Alert History"] --> B["AI Compiles<br/>Report"]
-    B --> C["Shift Handover"]
-    B --> D["Equipment Health<br/>Summary"]
-    B --> E["Downtime<br/>Analysis"]
-    C & D & E --> F["Delivered via<br/>WhatsApp or Email"]
+    A["End of Shift<br/>(scheduled trigger)"] --> B["Read PLC counters<br/>+ alert history"]
+    B --> C["Compile report:<br/>output, uptime, faults"]
+    C --> D["Send to plant<br/>manager via WhatsApp"]
+    C --> E["Archive for<br/>trend analysis"]
       </pre>
     </div>
   </div>
@@ -479,22 +606,29 @@ flowchart LR
       <div class="icon icon--orange">
         <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
       </div>
-      <h3>Shift Handover</h3>
-      <p>End-of-shift summary: what happened, what was fixed, what still needs attention.</p>
+      <h3>End-of-Shift Production Report</h3>
+      <p>Units produced, uptime percentage, fault count, top issues. Sent automatically at shift end.</p>
     </div>
     <div class="card">
       <div class="icon icon--green">
         <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
       </div>
-      <h3>Equipment Health</h3>
-      <p>Weekly overview of machine performance, recurring issues, and maintenance recommendations.</p>
+      <h3>Shift Handover</h3>
+      <p>What happened, what was fixed, what the next shift needs to watch. Covers all machines.</p>
+    </div>
+    <div class="card">
+      <div class="icon icon--blue">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      </div>
+      <h3>Weekly Trends</h3>
+      <p>Aggregated data over the week. Spot recurring issues, compare shift performance, track improvements.</p>
     </div>
     <div class="card">
       <div class="icon icon--red">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       </div>
-      <h3>Downtime Tracking</h3>
-      <p>Automatic logging and categorization of downtime events. Trends visible over time.</p>
+      <h3>Downtime Analysis</h3>
+      <p>Automatic logging and categorization of every downtime event. Root causes ranked by frequency.</p>
     </div>
   </div>
 </div>
@@ -636,6 +770,82 @@ flowchart TB
       sequenceNumberColor: '#ffffff'
     }
   });
+  // CHAT ANIMATION
+  const scenes = {
+    fault: [
+      { type: 'bot', text: '⚠️ <strong>Fault detected on Line 3</strong>\n\nMotor M3 thermal overload triggered.\nTemperature: 87.3°C (limit: 75°C)\n\nThermal relay F5 tripped. Power path: Q7 → K12 → M3.\n\n<strong>Suggested action:</strong> Check F5 contacts and reset. Inspect M3 bearing for degradation.', time: '14:23' },
+      { type: 'user', text: 'What was the temperature trend before the fault?', time: '14:25' },
+      { type: 'bot', text: 'M3 temperature over the last 2 hours:\n\n12:30 — 62°C ✅\n13:00 — 68°C ✅\n13:30 — 74°C ⚠️\n14:00 — 81°C ⚠️\n14:20 — 87°C 🔴 (fault)\n\nSteady increase of ~5°C every 30 minutes. This suggests gradual mechanical friction, likely a bearing issue.', time: '14:25' },
+    ],
+    plcdata: [
+      { type: 'user', text: 'What\'s the current temperature on Zone 2?', time: '09:15' },
+      { type: 'bot', text: '<strong>Zone 2 Temperature</strong>\n\nCurrent: 172.4°C\nSetpoint: 175.0°C\nStatus: ✅ Within range (150-200°C)\n\nTrend: stable for the last 45 minutes.', time: '09:15' },
+      { type: 'user', text: 'And the pressure on the main line?', time: '09:16' },
+      { type: 'bot', text: '<strong>Main Line Pressure</strong>\n\nCurrent: 4.2 bar\nSetpoint: 4.5 bar\nStatus: ✅ Normal (3.5-5.0 bar)\n\nSlightly below setpoint but within operating range.', time: '09:16' },
+    ],
+    schematic: [
+      { type: 'user', text: 'What protects motor M7?', time: '10:30' },
+      { type: 'bot', text: '<strong>Protection chain for M7:</strong>\n\nL51 → Q7 (circuit breaker, 25A)\n→ K12 (contactor)\n→ F8 (thermal relay, 18-25A)\n→ M7 (main motor, 15kW)\n\nSafety circuit: Emergency stop E3 cuts K12 coil via safety relay K1.', time: '10:31' },
+      { type: 'user', text: 'What happens if K12 fails?', time: '10:32' },
+      { type: 'bot', text: '<strong>Impact analysis for K12 failure:</strong>\n\nDirect: M7 loses power (15kW main motor stops)\nDownstream: conveyor belt on Line 2 stops\nRelated: F8 thermal relay no longer relevant\n\nNo other motors affected. K12 only controls M7.', time: '10:32' },
+    ],
+    recipe: [
+      { type: 'user', text: 'Set Zone 2 temperature to 185°C', time: '11:00' },
+      { type: 'bot', text: '<strong>Recipe change request:</strong>\n\nParameter: Zone 2 Temperature\nCurrent value: 175.0°C\nNew value: 185.0°C\nValid range: 150-200°C ✅\n\nConfirm this change?', time: '11:00' },
+      { type: 'user', text: 'Yes, confirm', time: '11:01' },
+      { type: 'bot', text: '✅ <strong>Done.</strong> Zone 2 temperature setpoint updated to 185.0°C.\n\nPrevious value: 175.0°C\nChanged by: Operator Mueller\nTimestamp: 11:01:23\n\nChange logged for audit.', time: '11:01' },
+    ],
+    report: [
+      { type: 'bot', text: '📊 <strong>Production Report — Feb 21, Shift 2</strong>\n\n<strong>Output:</strong> 12,450 units (target: 12,000) ✅\n<strong>Uptime:</strong> 94.2% (target: 95%) ⚠️\n<strong>Faults:</strong> 3 total\n\n<strong>Top issues:</strong>\n1. M3 thermal overload (28 min downtime)\n2. Conveyor belt slip sensor (12 min)\n3. Pressure drop on Line 1 (8 min)\n\n<strong>Notes:</strong> M3 bearing replacement recommended before next shift. All other machines running within parameters.', time: '22:00' },
+      { type: 'user', text: 'How does today compare to yesterday?', time: '22:02' },
+      { type: 'bot', text: '<strong>Shift 2 comparison:</strong>\n\nOutput: 12,450 today vs 11,800 yesterday (+5.5%)\nUptime: 94.2% vs 91.7% (+2.5%)\nFaults: 3 vs 5 (improved)\n\nYesterday had 2 extended stoppages on Line 1 (pressure valve issue, now resolved).', time: '22:02' },
+    ]
+  };
+
+  let chatTimeout = [];
+  function playScene(name, btn) {
+    // Update tabs
+    document.querySelectorAll('.chat-scene-tab').forEach(t => t.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    else document.querySelector('.chat-scene-tab')?.classList.add('active');
+
+    // Clear existing
+    chatTimeout.forEach(t => clearTimeout(t));
+    chatTimeout = [];
+    const body = document.getElementById('chatBody');
+    const typing = document.getElementById('chatTyping');
+    body.innerHTML = '';
+    body.appendChild(typing);
+
+    const msgs = scenes[name];
+    let delay = 300;
+
+    msgs.forEach((msg, i) => {
+      // Show typing before bot messages
+      if (msg.type === 'bot') {
+        chatTimeout.push(setTimeout(() => { typing.classList.add('visible'); }, delay));
+        delay += 800 + msg.text.length * 3;
+        chatTimeout.push(setTimeout(() => { typing.classList.remove('visible'); }, delay));
+        delay += 100;
+      } else {
+        delay += 400;
+      }
+
+      chatTimeout.push(setTimeout(() => {
+        const el = document.createElement('div');
+        el.className = 'chat-msg ' + msg.type;
+        el.innerHTML = msg.text.replace(/\n/g, '<br>') + '<div class="time">' + msg.time + '</div>';
+        body.insertBefore(el, typing);
+        body.scrollTop = body.scrollHeight;
+      }, delay));
+
+      delay += 600;
+    });
+  }
+
+  // Auto-play first scene
+  document.addEventListener('DOMContentLoaded', () => { setTimeout(() => playScene('fault'), 500); });
+
   function zoomMermaid(btn, factor) {
     const wrap = btn.closest('.diagram');
     const inner = wrap?.querySelector('.mermaid-inner');
