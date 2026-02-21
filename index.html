@@ -128,7 +128,8 @@
   .chat-header .info small { display: block; font-size: 11px; font-weight: 400; opacity: 0.8; }
   .chat-body {
     padding: 16px;
-    min-height: 420px;
+    height: 420px;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -844,7 +845,11 @@ flowchart TB
   }
 
   // Auto-play first scene
-  document.addEventListener('DOMContentLoaded', () => { setTimeout(() => playScene('fault'), 500); });
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => { setTimeout(() => playScene('fault'), 300); });
+  } else {
+    setTimeout(() => playScene('fault'), 300);
+  }
 
   function zoomMermaid(btn, factor) {
     const wrap = btn.closest('.diagram');
