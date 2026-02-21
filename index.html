@@ -743,7 +743,7 @@ flowchart TB
 </div>
 
 <script>
-  mermaid.initialize({
+  window.addEventListener('load', function() { if (typeof mermaid !== 'undefined') mermaid.initialize({
     startOnLoad: true, theme: 'base',
     themeVariables: {
       primaryColor: '#eff4ff',
@@ -770,9 +770,9 @@ flowchart TB
       activationBkgColor: '#eff4ff',
       sequenceNumberColor: '#ffffff'
     }
-  });
+  }); });
   // CHAT ANIMATION
-  const scenes = {
+  var scenes = {
     fault: [
       { type: 'bot', text: '⚠️ <strong>Fault detected on Line 3</strong>\n\nMotor M3 thermal overload triggered.\nTemperature: 87.3°C (limit: 75°C)\n\nThermal relay F5 tripped. Power path: Q7 → K12 → M3.\n\n<strong>Suggested action:</strong> Check F5 contacts and reset. Inspect M3 bearing for degradation.', time: '14:23' },
       { type: 'user', text: 'What was the temperature trend before the fault?', time: '14:25' },
@@ -803,7 +803,7 @@ flowchart TB
     ]
   };
 
-  let chatTimeout = [];
+  var chatTimeout = [];
   function playScene(name, btn) {
     // Update tabs
     document.querySelectorAll('.chat-scene-tab').forEach(t => t.classList.remove('active'));
