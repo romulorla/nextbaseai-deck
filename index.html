@@ -774,32 +774,32 @@ flowchart TB
   // CHAT ANIMATION
   var scenes = {
     fault: [
-      { type: 'bot', text: '⚠️ <strong>Fault detected on Line 3</strong>\n\nMotor M3 thermal overload triggered.\nTemperature: 87.3°C (limit: 75°C)\n\nThermal relay F5 tripped. Power path: Q7 → K12 → M3.\n\n<strong>Suggested action:</strong> Check F5 contacts and reset. Inspect M3 bearing for degradation.', time: '14:23' },
-      { type: 'user', text: 'What was the temperature trend before the fault?', time: '14:25' },
-      { type: 'bot', text: 'M3 temperature over the last 2 hours:\n\n12:30 — 62°C ✅\n13:00 — 68°C ✅\n13:30 — 74°C ⚠️\n14:00 — 81°C ⚠️\n14:20 — 87°C 🔴 (fault)\n\nSteady increase of ~5°C every 30 minutes. This suggests gradual mechanical friction, likely a bearing issue.', time: '14:25' },
+      { type: 'bot', text: '⚠️ <strong>Fault detected on Gearbox Cooling</strong>\n\nOil temperature above 80°C.\nCurrent: 83.7°C (limit: 80°C)\n\nCooling pump P2 is running but flow rate is below expected. Oil filter differential pressure is high.\n\n<strong>Suggested action:</strong> Check oil filter for clogging. Inspect cooling circuit valve V3 position.', time: '14:23' },
+      { type: 'user', text: 'What was the oil temperature trend before the fault?', time: '14:25' },
+      { type: 'bot', text: 'Gearbox oil temperature over the last 2 hours:\n\n12:30 — 64°C ✅\n13:00 — 69°C ✅\n13:30 — 74°C ⚠️\n14:00 — 78°C ⚠️\n14:20 — 83.7°C 🔴 (fault)\n\nSteady increase of ~4°C every 30 minutes while cooling pump was active. Points to restricted oil flow through the filter.', time: '14:25' },
     ],
     plcdata: [
-      { type: 'user', text: 'What\'s the current temperature on Zone 2?', time: '09:15' },
-      { type: 'bot', text: '<strong>Zone 2 Temperature</strong>\n\nCurrent: 172.4°C\nSetpoint: 175.0°C\nStatus: ✅ Within range (150-200°C)\n\nTrend: stable for the last 45 minutes.', time: '09:15' },
-      { type: 'user', text: 'And the pressure on the main line?', time: '09:16' },
-      { type: 'bot', text: '<strong>Main Line Pressure</strong>\n\nCurrent: 4.2 bar\nSetpoint: 4.5 bar\nStatus: ✅ Normal (3.5-5.0 bar)\n\nSlightly below setpoint but within operating range.', time: '09:16' },
+      { type: 'user', text: 'What\'s the current gearbox oil temperature?', time: '09:15' },
+      { type: 'bot', text: '<strong>Gearbox Oil Temperature</strong>\n\nCurrent: 68.4°C\nSetpoint: 65.0°C\nStatus: ✅ Within range (50-80°C)\n\nTrend: stable for the last 45 minutes.', time: '09:15' },
+      { type: 'user', text: 'And the hydraulic pressure on the press?', time: '09:16' },
+      { type: 'bot', text: '<strong>Hydraulic Press Pressure</strong>\n\nCurrent: 182 bar\nSetpoint: 185 bar\nStatus: ✅ Normal (160-200 bar)\n\nStable. Accumulator charge cycle running normally.', time: '09:16' },
     ],
     schematic: [
-      { type: 'user', text: 'What protects motor M7?', time: '10:30' },
-      { type: 'bot', text: '<strong>Protection chain for M7:</strong>\n\nL51 → Q7 (circuit breaker, 25A)\n→ K12 (contactor)\n→ F8 (thermal relay, 18-25A)\n→ M7 (main motor, 15kW)\n\nSafety circuit: Emergency stop E3 cuts K12 coil via safety relay K1.', time: '10:31' },
-      { type: 'user', text: 'What happens if K12 fails?', time: '10:32' },
-      { type: 'bot', text: '<strong>Impact analysis for K12 failure:</strong>\n\nDirect: M7 loses power (15kW main motor stops)\nDownstream: conveyor belt on Line 2 stops\nRelated: F8 thermal relay no longer relevant\n\nNo other motors affected. K12 only controls M7.', time: '10:32' },
+      { type: 'user', text: 'What protects the cooling pump motor?', time: '10:30' },
+      { type: 'bot', text: '<strong>Protection chain for Cooling Pump P2 (Motor M7):</strong>\n\nL51 → Q7 (circuit breaker, 25A)\n→ K12 (contactor)\n→ F8 (thermal relay, 18-25A)\n→ M7 (cooling pump motor, 15kW)\n\nSafety: Emergency stop E3 cuts K12 coil via safety relay K1.', time: '10:31' },
+      { type: 'user', text: 'What happens if contactor K12 fails?', time: '10:32' },
+      { type: 'bot', text: '<strong>Impact analysis for K12 failure:</strong>\n\nDirect: Cooling pump P2 stops (motor M7, 15kW)\nDownstream: Gearbox oil cooling lost, temperature will rise\nCritical: Gearbox overtemp fault within ~30 min if not addressed\n\nNo other motors affected. K12 only controls M7.', time: '10:32' },
     ],
     recipe: [
-      { type: 'user', text: 'Set Zone 2 temperature to 185°C', time: '11:00' },
-      { type: 'bot', text: '<strong>Recipe change request:</strong>\n\nParameter: Zone 2 Temperature\nCurrent value: 175.0°C\nNew value: 185.0°C\nValid range: 150-200°C ✅\n\nConfirm this change?', time: '11:00' },
+      { type: 'user', text: 'Set gearbox oil temperature limit to 85°C', time: '11:00' },
+      { type: 'bot', text: '<strong>Recipe change request:</strong>\n\nParameter: Gearbox Oil Temp Limit\nCurrent value: 80.0°C\nNew value: 85.0°C\nValid range: 60-90°C ✅\n\nConfirm this change?', time: '11:00' },
       { type: 'user', text: 'Yes, confirm', time: '11:01' },
-      { type: 'bot', text: '✅ <strong>Done.</strong> Zone 2 temperature setpoint updated to 185.0°C.\n\nPrevious value: 175.0°C\nChanged by: Operator Mueller\nTimestamp: 11:01:23\n\nChange logged for audit.', time: '11:01' },
+      { type: 'bot', text: '✅ <strong>Done.</strong> Gearbox oil temperature limit updated to 85.0°C.\n\nPrevious value: 80.0°C\nChanged by: Operator Mueller\nTimestamp: 11:01:23\n\nChange logged for audit.', time: '11:01' },
     ],
     report: [
-      { type: 'bot', text: '📊 <strong>Production Report — Feb 21, Shift 2</strong>\n\n<strong>Output:</strong> 12,450 units (target: 12,000) ✅\n<strong>Uptime:</strong> 94.2% (target: 95%) ⚠️\n<strong>Faults:</strong> 3 total\n\n<strong>Top issues:</strong>\n1. M3 thermal overload (28 min downtime)\n2. Conveyor belt slip sensor (12 min)\n3. Pressure drop on Line 1 (8 min)\n\n<strong>Notes:</strong> M3 bearing replacement recommended before next shift. All other machines running within parameters.', time: '22:00' },
+      { type: 'bot', text: '📊 <strong>Production Report — Feb 21, Shift 2</strong>\n\n<strong>Output:</strong> 12,450 units (target: 12,000) ✅\n<strong>Uptime:</strong> 94.2% (target: 95%) ⚠️\n<strong>Faults:</strong> 3 total\n\n<strong>Top issues:</strong>\n1. Gearbox overtemp — oil filter clogged (28 min)\n2. Conveyor belt slip sensor (12 min)\n3. Hydraulic press accumulator low (8 min)\n\n<strong>Maintenance note:</strong> Oil filter replacement recommended before next shift. Hydraulic accumulator bladder to be inspected this weekend.', time: '22:00' },
       { type: 'user', text: 'How does today compare to yesterday?', time: '22:02' },
-      { type: 'bot', text: '<strong>Shift 2 comparison:</strong>\n\nOutput: 12,450 today vs 11,800 yesterday (+5.5%)\nUptime: 94.2% vs 91.7% (+2.5%)\nFaults: 3 vs 5 (improved)\n\nYesterday had 2 extended stoppages on Line 1 (pressure valve issue, now resolved).', time: '22:02' },
+      { type: 'bot', text: '<strong>Shift 2 comparison:</strong>\n\nOutput: 12,450 today vs 11,800 yesterday (+5.5%)\nUptime: 94.2% vs 91.7% (+2.5%)\nFaults: 3 vs 5 (improved)\n\nYesterday had 2 extended stoppages on the hydraulic press (pressure valve issue, now resolved).', time: '22:02' },
     ]
   };
 
