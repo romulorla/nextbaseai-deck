@@ -304,10 +304,14 @@ sequenceDiagram
     </div>
     <div class="mermaid-inner">
       <pre class="mermaid">
-flowchart LR
-    A["User asks:<br/>'What's the temperature<br/>on Line 2?'"] --> B["AI identifies<br/>relevant PLC tags"]
-    B --> C["Reads live values<br/>from Siemens PLC"]
-    C --> D["Returns formatted<br/>response with context"]
+flowchart TD
+    A["User asks about<br/>a PLC value"] --> B["Check TAG_DICTIONARY<br/>(already in context)"]
+    B --> C{"Tag found?"}
+    C -->|"Yes"| F["gateway read<br/>--tags nodeId"]
+    C -->|"No"| D["gateway search<br/>--query '...'"]
+    D --> E["Write discovered tag<br/>to TAG_DICTIONARY"]
+    E --> F
+    F --> G["Compose reply<br/>to user"]
       </pre>
     </div>
   </div>
