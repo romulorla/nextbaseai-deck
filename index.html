@@ -811,12 +811,12 @@ flowchart TB
     else document.querySelector('.chat-scene-tab')?.classList.add('active');
 
     // Clear existing
-    chatTimeout.forEach(t => clearTimeout(t));
+    chatTimeout.forEach(function(t){ clearTimeout(t); });
     chatTimeout = [];
-    const body = document.getElementById('chatBody');
-    const typing = document.getElementById('chatTyping');
-    body.innerHTML = '';
-    body.appendChild(typing);
+    var body = document.getElementById('chatBody');
+    if (!body) return;
+    body.innerHTML = '<div class="chat-typing" id="chatTyping"><span></span><span></span><span></span></div>';
+    var typing = document.getElementById('chatTyping');
 
     const msgs = scenes[name];
     let delay = 300;
@@ -844,13 +844,6 @@ flowchart TB
     });
   }
 
-  // Auto-play first scene
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => { setTimeout(() => playScene('fault'), 300); });
-  } else {
-    setTimeout(() => playScene('fault'), 300);
-  }
-
   function zoomMermaid(btn, factor) {
     const wrap = btn.closest('.diagram');
     const inner = wrap?.querySelector('.mermaid-inner');
@@ -865,6 +858,14 @@ flowchart TB
     const svg = inner?.querySelector('svg'); if (!svg) return;
     svg.style.transform = 'scale(1)';
   }
+</script>
+<script>
+// Chat auto-play (inline, runs after DOM is parsed)
+(function(){
+  var body = document.getElementById('chatBody');
+  if (!body) return;
+  setTimeout(function(){ playScene('fault'); }, 500);
+})();
 </script>
 </body>
 </html>
