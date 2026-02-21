@@ -525,8 +525,8 @@ flowchart LR
 <!-- RECIPE ADJUSTMENT -->
 <div id="recipes" class="container">
   <div class="label">Recipe Management</div>
-  <h2>Adjust recipes through conversation</h2>
-  <p class="subtitle">Operators request parameter changes via chat. The AI validates the values, checks constraints, and applies the adjustments to the PLC. Every change requires confirmation and is fully logged.</p>
+  <h2>Describe the problem, get the right parameters</h2>
+  <p class="subtitle">Operators describe quality issues in their own words. The AI identifies which machine parameters to adjust, explains why, and applies the changes after confirmation.</p>
 
   <div class="diagram">
     <div class="diagram-label">Recipe Adjustment Flow</div>
@@ -542,13 +542,13 @@ sequenceDiagram
     participant AI as NextbaseAI
     participant PLC as Siemens PLC
 
-    Op->>AI: "Set Line 2 temperature to 185°C"
-    AI->>AI: Validate against limits (150–200°C)
-    AI-->>Op: "Confirm: set Line 2 temp to 185°C?"
+    Op->>AI: "Bell end is porous"
+    AI->>AI: Identify root cause + parameters
+    AI-->>Op: "Increase vibration time, reduce sprinkling. Confirm?"
     Op->>AI: "Yes"
-    AI->>PLC: Write new setpoint
+    AI->>PLC: Write adjusted values
     PLC-->>AI: Confirmed
-    AI-->>Op: "Done. Line 2 temperature setpoint updated to 185°C."
+    AI-->>Op: "Updated. Monitor next 5-10 pipes."
       </pre>
     </div>
   </div>
@@ -558,22 +558,22 @@ sequenceDiagram
       <div class="icon icon--teal">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
       </div>
-      <h3>Validated Changes</h3>
-      <p>Every adjustment is checked against safe operating limits before it's applied.</p>
+      <h3>Problem-Based Input</h3>
+      <p>Operators describe what they see ("bell end is porous", "pipe wall too thin"). The AI maps that to the right machine parameters.</p>
     </div>
     <div class="card">
       <div class="icon icon--orange">
         <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
       </div>
-      <h3>Confirmation Required</h3>
-      <p>The operator must confirm before any value is written. No accidental changes.</p>
+      <h3>Explains Every Change</h3>
+      <p>Before adjusting, the AI explains why each parameter is being changed. Operators understand what's happening and learn over time.</p>
     </div>
     <div class="card">
       <div class="icon icon--blue">
         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
       </div>
       <h3>Full Audit Trail</h3>
-      <p>Every change is logged with the requester, timestamp, and previous value.</p>
+      <p>Every change is logged with who requested it, when, and what the previous values were.</p>
     </div>
   </div>
 </div>
