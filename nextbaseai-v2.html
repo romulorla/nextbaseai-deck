@@ -11,26 +11,26 @@
 <style>
   :root {
     --font: 'Inter', system-ui, -apple-system, sans-serif;
-    --bg: #0c0f14;
-    --surface: #171b23;
-    --surface2: #1f252e;
-    --border: #2a303c;
-    --border-light: #333a47;
-    --text: #ffffff;
-    --text-secondary: #b8c5d3;
-    --text-muted: #8892a3;
-    --accent: #4f9eff;
-    --accent-light: rgba(79, 158, 255, 0.15);
-    --green: #5fb85f;
-    --green-light: rgba(95, 184, 95, 0.15);
-    --orange: #ff9b4a;
-    --orange-light: rgba(255, 155, 74, 0.15);
-    --red: #ff6b6b;
-    --red-light: rgba(255, 107, 107, 0.15);
-    --purple: #a855f7;
-    --purple-light: rgba(168, 85, 247, 0.15);
-    --teal: #4fd1c7;
-    --teal-light: rgba(79, 209, 199, 0.15);
+    --bg: #ffffff;
+    --surface: #f8f9fb;
+    --surface2: #f1f3f6;
+    --border: #e2e5ea;
+    --border-light: #edf0f3;
+    --text: #1a1d23;
+    --text-secondary: #5f6878;
+    --text-muted: #8c95a4;
+    --accent: #2563eb;
+    --accent-light: rgba(37, 99, 235, 0.08);
+    --green: #16a34a;
+    --green-light: rgba(22, 163, 74, 0.08);
+    --orange: #d97706;
+    --orange-light: rgba(217, 119, 6, 0.08);
+    --red: #dc2626;
+    --red-light: rgba(220, 38, 38, 0.08);
+    --purple: #7c3aed;
+    --purple-light: rgba(124, 58, 237, 0.08);
+    --teal: #0d9488;
+    --teal-light: rgba(13, 148, 136, 0.08);
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { 
@@ -44,7 +44,7 @@
 
   nav {
     position: sticky; top: 0; z-index: 100;
-    background: rgba(12, 15, 20, 0.92); backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
     padding: 0 48px; display: flex; align-items: center; gap: 28px; height: 56px;
     overflow-x: auto; scrollbar-width: none;
@@ -890,26 +890,26 @@ flowchart TB
     startOnLoad: true, theme: 'base',
     themeVariables: {
       primaryColor: 'rgba(79, 158, 255, 0.15)',
-      primaryTextColor: '#ffffff',
-      primaryBorderColor: '#4f9eff',
+      primaryTextColor: '#1a1d23',
+      primaryBorderColor: '#2563eb',
       lineColor: '#b8c5d3',
-      secondaryColor: '#171b23',
-      tertiaryColor: '#1f252e',
+      secondaryColor: '#f8f9fb',
+      tertiaryColor: '#f1f3f6',
       fontFamily: 'Inter, system-ui, sans-serif',
       fontSize: '15px',
       nodeBorder: '#4f9eff',
       mainBkg: 'rgba(79, 158, 255, 0.15)',
-      clusterBkg: '#171b23',
-      clusterBorder: '#2a303c',
-      titleColor: '#ffffff',
-      edgeLabelBackground: '#0c0f14',
-      nodeTextColor: '#ffffff',
-      actorTextColor: '#ffffff',
-      actorBorder: '#4f9eff',
+      clusterBkg: '#f8f9fb',
+      clusterBorder: '#e2e5ea',
+      titleColor: '#1a1d23',
+      edgeLabelBackground: '#ffffff',
+      nodeTextColor: '#1a1d23',
+      actorTextColor: '#1a1d23',
+      actorBorder: '#2563eb',
       actorBkg: 'rgba(79, 158, 255, 0.15)',
-      signalColor: '#ffffff',
-      signalTextColor: '#ffffff',
-      activationBorderColor: '#4f9eff',
+      signalColor: '#1a1d23',
+      signalTextColor: '#1a1d23',
+      activationBorderColor: '#2563eb',
       activationBkgColor: 'rgba(79, 158, 255, 0.15)',
       sequenceNumberColor: '#ffffff'
     }
